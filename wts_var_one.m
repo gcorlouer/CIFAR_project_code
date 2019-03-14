@@ -1,14 +1,13 @@
-%Window one time series and model it
+%Window one time series and model it 
 n_chan=10;
-momax=150;
+momax=50;
 moregmode='LWR';
 regmode   = 'LWR';
-T=size(X,2);
-L=1000; % largeur of sliding window in sec/2
-num_window=floor(T/L-1);
-X=EEG.data;
-X([1,60],:)=[];%get rid of bad channels
+L=10000/2; % largeur of sliding window 
+X=X_pp;
 X=X(1:n_chan,:);
+T=size(X,2);
+num_window=floor(T/L-1);
 %% Define sliding window 
 X_slided=zeros(n_chan,L,num_window); 
 for N=1:num_window
@@ -28,4 +27,3 @@ ptic('\n*** tsdata_to_var... ');
 ptoc;
 info = var_info(A,V);
 assert(~info.error,'VAR error(s) found - bailing out');
-spectral_radius(i,1)=info.rho;
