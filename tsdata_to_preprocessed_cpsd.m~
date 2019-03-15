@@ -1,7 +1,7 @@
 %% PLot filtered spectral density
 %Initialise parameters
 X=double(EEG.data); %double precision
-X([1,60],:)=[];%get rid of bad channels
+X([1:2,4:35, 60],:)=[];%get rid of some Channels
 n_chan=size(X,1);
 X=X(1:n_chan,:);
 fres=2^11;
@@ -9,7 +9,7 @@ fs=EEG.srate;
 %% Filtering the signal
 fc=1; %cutoff frequency
 fn=fs/2; %Nyquist frequency
-order=2; %Filter order : unclear what to chose here 
+order=1; %Filter order : unclear what to chose here 
 [b,a]=butter(order,fc/fn,'high'); %Butterworth High pass filter
 fvtool(b,a);
 X_pp=filtfilt(b,a,X); %Zero phase filtering in forward and backward direction

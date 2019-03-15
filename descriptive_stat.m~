@@ -1,0 +1,9 @@
+%% Descriptive statistics of the data
+X=double(EEG.data);
+av_X=mean(X');
+var_X=var(X');
+ax1=subplot(2,1,1);
+bar(av_X)
+title('Sample mean')
+ax2=subplot(2,1,2);
+bar(var_X)

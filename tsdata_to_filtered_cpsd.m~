@@ -12,11 +12,9 @@ fn=fs/2; %Nyquist frequency
 order=2; %Filter order : unclear what to chose here 
 [b,a]=butter(order,fc/fn,'high'); %Butterworth High pass filter
 fvtool(b,a);
-X_pp=filtfilt(b,a,X); %Zero phase filtering in forward and backward direction
-%% Downsampling
-X_pp=downsample(X,2,[]);
+X_filt=filtfilt(b,a,X); %Zero phase filtering in forward and backward direction
 %% Compute cpsd (autospec mean we compute the autospectral density)
-[S_filt,f,fres] = tsdata_to_cpsd(X_pp,[],fs,[],[],fres,'True',[]); %Filtered
+[S_filt,f,fres] = tsdata_to_cpsd(X_filt,[],fs,[],[],fres,'True',[]); %Filtered
 %[S,f,fres] = tsdata_to_cpsd(X,[],fs,[],[],fres,'True',[]); %Unfiltered
 %% Plot cpsd
 %filtered cpsd
@@ -24,7 +22,6 @@ figure
 loglog(f,S_filt)
 xlabel('Frequency')
 ylabel('Spectral density')
-legend('Filtered Spectral density function')
 % %unfiltered
 % figure 
 % loglog(f,S)

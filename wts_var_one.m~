@@ -1,11 +1,11 @@
 %Window one time series and model it 
+n_chan=2;
 momax=25;
 moregmode='LWR';
 regmode   = 'LWR';
 L=10000/2; % largeur of sliding window 
 X=X_pp;
-X([1:12,14:22,24:59],:)=[];%get rid of some channels
-n_chan=size(X,1)
+X([1:12,13:22,:59],:)=[];%get rid of some channels
 T=size(X,2);
 num_window=floor(T/L-1);
 %% Define sliding window 
