@@ -1,0 +1,10 @@
+function W=bij(X,Y,Z)
+%Create a bijection between array of strings with similar strings in different order
+for i in size(squeeze(X))
+    s=X(i);
+    if ~any(Y,s) %check s is in Y
+        j=find(ismember(Y,s))%look for index of j in Y
+        W(i)=Z(j,:)
+    else 
+        W(i)='unknown'
+        

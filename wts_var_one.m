@@ -2,9 +2,9 @@
 momax=25;
 moregmode='LWR';
 regmode   = 'LWR';
-L=10000/2; % largeur of sliding window 
+L=50000; % largeur of sliding window 
 X=X_pp;
-X([1:12,14:22,24:59],:)=[];%get rid of some channels
+X([12:127],:)=[];%get rid of some channels
 n_chan=size(X,1)
 T=size(X,2);
 num_window=floor(T/L-1);

@@ -3,7 +3,7 @@
 %TODO : Store X in a file
 
 %Define variables
-C=[1,0,1;0,1,1;1,1,1]; %connectivity matrix
+C=[1,1,0;0,1,0;0,0,1]; %connectivity matrix
 n=3; %ts dimension
 p=2; %model order
 rho=0.5; % spectral radius
@@ -81,4 +81,4 @@ plot_pw(sigLR,sprintf('LR test (%s-regression)\nSignificant at p = %g',tstats,al
 %Store time series in a file to be upload later on pytorch
 %save('generated_var(num2str(n),num2str(p)).csv','X')
 X=X'
-csvwrite('generated_var.csv',X)
+csvwrite('/its/home/gc349/TCDF/data/generated_var.csv',X)
