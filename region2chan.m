@@ -1,5 +1,4 @@
-%This function create a dictionary between channels number and their
-%locations. For any regions it records all channels number in this region
+% For any regions it records all channels number in this region
 function dict=region2chan(Lr,ROI)
 keySet=ROI;%Cell of regions of interests
 valueSet=cell(size(ROI));

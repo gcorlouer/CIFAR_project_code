@@ -1,10 +1,8 @@
-function W=bij(X,Y,Z)
+function W=chan2region(X,Y,Z)
 %Create a bijection between array of strings with similar strings in different order
-[n,m]=size(X);
-[n,m]=size(Y);
-[n,m]=size(Z);
-W={}
-for i=1:size(squeeze(X))
+%Y might be the electrodes names, Z the electrode location and X chan names
+W={};
+for i=1:size(X)
     s=X(i);
     if any(strcmp(Y,s))==1; %check s is in Y
         j=find(ismember(Y,s));%look for index of j in Y
