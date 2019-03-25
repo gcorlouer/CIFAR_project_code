@@ -27,8 +27,8 @@ for i=1:num_window
     morders(i,1)=moselect('HQC','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
     LRT=moselect('LRT','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
     BIC=moselect('BIC','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
-    errlow(i,1)=morders(i,1)-BIC;
-    errhigh(i,1)=LRT-morders(i,1);
+    errlow(i,1)=morders(i,1)-
+    errhigh(i,1)=moselect('LRT','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
 end 
 %% Barplot model orders with uncertainty bars
 figure;
@@ -66,4 +66,3 @@ bar(sliding_window,spectral_radius);
 title('Spectral radius along silding window of 20 seconds')
 xlabel('Sliding window')
 ylabel('Spectral radius')
-ylim([0.9,1])

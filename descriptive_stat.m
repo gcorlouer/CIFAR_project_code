@@ -1,5 +1,5 @@
 %% Descriptive statistics of some data
-X=double(EEG.data); 
+X=X_pp; 
 av_X=mean(X');
 var_X=var(X');
 min_X=min(abs(X),[],2);

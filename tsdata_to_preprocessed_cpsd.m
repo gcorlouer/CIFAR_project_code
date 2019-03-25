@@ -1,12 +1,11 @@
-%% PLot filtered spectral density
-%Initialise parameters
+%% PLot filtered spectral density, downsample and highpass over 1HZ
+%Pick channels 
 X=double(EEG.data); %double precision
-X(1,:)=[];%get rid of bad channels
 n_chan=size(X,1);
-X=X(1:n_chan,:);
+%X=X(1:n_chan,:);
 fres=2^11;
 fs=EEG.srate;
-%% Filtering the signal
+%% High pass Filtering the signal
 fc=1; %cutoff frequency
 fn=fs/2; %Nyquist frequency
 order=2; %Filter order : unclear what to chose here 
@@ -14,13 +13,13 @@ order=2; %Filter order : unclear what to chose here
 fvtool(b,a);
 X_pp=filtfilt(b,a,X); %Zero phase filtering in forward and backward direction
 %% Downsampling
-X_pp=downsample(X,1,[]);
+X_pp=downsample(X,2,[]);
 %% Compute cpsd (autospec mean we compute the autospectral density)
 [S_filt,f,fres] = tsdata_to_cpsd(X_pp,[],fs,[],[],fres,'True',[]); %Filtered
 %[S,f,fres] = tsdata_to_cpsd(X,[],fs,[],[],fres,'True',[]); %Unfiltered
 %% Plot cpsd
 %filtered cpsd
-figure 
+figure(1); 
 loglog(f,S_filt)
 xlabel('Frequency')
 ylabel('Spectral density')
