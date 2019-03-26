@@ -13,7 +13,7 @@ order=2; %Filter order : unclear what to chose here
 fvtool(b,a);
 X_pp=filtfilt(b,a,X); %Zero phase filtering in forward and backward direction
 %% Downsampling
-X_pp=downsample(X,2,[]);
+X_pp=downsample(X,4,[]);
 %% Compute cpsd (autospec mean we compute the autospectral density)
 [S_filt,f,fres] = tsdata_to_cpsd(X_pp,[],fs,[],[],fres,'True',[]); %Filtered
 %[S,f,fres] = tsdata_to_cpsd(X,[],fs,[],[],fres,'True',[]); %Unfiltered
