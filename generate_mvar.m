@@ -1,16 +1,16 @@
-%Generate MVAR time series and store it in a file to be load with pytorch
+%% Generate MVAR time series and store it in a file to be load with pytorch
 %Also compute actual and estimated GC using mvgc toolbox in time domain to test GC using NN
-%TODO : Store X in a file
-
 %Define variables
-C=[1,1,0;0,1,0;0,0,1]; %connectivity matrix
-n=3; %ts dimension
+fpath='/its/home/gc349/Causal_inf_convattention/data';
+C=[1,1,0,0;0,1,0,1;0,1,1,0;1,0,0,1]; %connectivity matrix
+csvwrite(fullfile(fpath,'connectivity_matrix.csv'),C);
+n=4; %ts dimension
 p=2; %model order
 rho=0.5; % spectral radius
 g=0.5; % g=-log(det(R)) where R is the correlation variance exp see corr_rand_exponent
 w=0.5 ;% decay factor of var coefficients : why useful?
 seed=0;
-nobs=500;   
+nobs=10000;   
 ntrials=1;
 time=1:1:nobs;
 % MVGC (time domain) statistical inference
@@ -30,18 +30,13 @@ rng_seed(seed);
 A=var_rand(C,p,rho,w,[]); %Random_var coefficients with network C
 V=corr_rand(n,g); %Random residuals correlation matrix
 ptic('Simulating VAR model...');
-X=var_to_tsdata(A,V,nobs,ntrials,[],[]); %Simulated process
+tsdata=var_to_tsdata(A,V,nobs,ntrials,[],[]); %Simulated process
 ptoc;
-
-%plot process
-figure(1); clf;
-plot(time, X);
-
 %Compute GC in time domain
 %Estimated time-domain pairwise-conditional Granger causalities
 
 ptic('*** var_to_pwcgc... ');
-[F,stats] = var_to_pwcgc(A,V,tstats,X,regmode);
+[F,stats] = var_to_pwcgc(A,V,tstats,tsdata,regmode);
 ptoc;
 assert(~isbad(F,false),'GC estimation failed');
 maxF = 1.1*nanmax(F(:));
@@ -71,7 +66,7 @@ plot_pw(FF,'PWCGC (actual)',[],maxF);
 
 subplot(2,2,2);
 plot_pw(F,'PWCGC (estimated)',[],maxF);
-
+    
 subplot(2,2,3);
 plot_pw(sigF,sprintf('F-test (%s-regression)\nSignificant at p = %g',tstats,alpha));
 
@@ -80,5 +75,5 @@ plot_pw(sigLR,sprintf('LR test (%s-regression)\nSignificant at p = %g',tstats,al
 
 %Store time series in a file to be upload later on pytorch
 %save('generated_var(num2str(n),num2str(p)).csv','X')
-X=X'
-csvwrite('/its/home/gc349/TCDF/data/generated_var.csv',X)
+tsdata=tsdata';
+csvwrite(fullfile(fpath,'generated_var.csv'),tsdata)

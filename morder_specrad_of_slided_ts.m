@@ -4,9 +4,9 @@ momax=25;
 moregmode='LWR';
 regmode   = 'LWR';
 T=size(X_pp,2);
-L=500; % largeur of sliding window L*downsample/fs sec
+L=250; % largeur of sliding window L*downsample/fs sec
 num_window=floor(T/L-1);
-fpath='/its/home/gc349/CIFAR_guillaume/Plots';
+fpath='/its/home/gc349/CIFAR_guillaume/Plots';%save plots here
 for j=1:size(EEG.ROI,1)
     x=X_pp(ROI2num_dic(idx2ROI(j)),:);%select channels
     n_chan=size(x,1);
@@ -47,7 +47,7 @@ for j=1:size(EEG.ROI,1)
     saveas(gca, fullfile(fpath, filename), 'png');
     close;
 %% VAR estimation and spectral radius
-    if n_chan>=2 
+    if n_chan==1 
         j=j+1;
     else
         spectral_radius=zeros(num_window,1);
