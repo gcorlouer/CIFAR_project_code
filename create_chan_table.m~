@@ -1,4 +1,4 @@
-%Create a structure array relating ROI, index of ROI, channel numbers in a
+%% Create a structure array relating ROI, index of ROI, channel numbers in a
 %given ROI and number of channles in that ROI
 ROI=EEG.ROI;
 for i=1:size(EEG.ROI)
@@ -13,3 +13,10 @@ end
 for i=1:size(EEG.ROI)
     chan_table(i).num_chans=size(chan_table(i).chans_idx,1);
 end
+%% Other format for python processing
+ch_table.chan_idx=0:1:EEG.nbchan;
+ch_table.chan_name=chan_name;
+ROIidxpchan=zeros(size(EEG.nbchan),1);
+for i=1:EEG.nbchan
+    ROIidxpchan=ROI2idx();
+ch_table.ROIidx=
