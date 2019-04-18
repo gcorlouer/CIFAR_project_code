@@ -1,4 +1,4 @@
-%% Generate MVAR time series and store it in a file to be load with pytorch
+%% Simulate MVAR time series and stores it in a csv file 
 %Also compute actual and estimated GC using mvgc toolbox in time domain to test GC using NN
 %Define variables
 fpath='/its/home/gc349/Causal_inf_convattention/data';%path to store the data

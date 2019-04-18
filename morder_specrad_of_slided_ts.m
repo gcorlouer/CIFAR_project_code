@@ -1,14 +1,15 @@
 %Sliding window time series modeling with vector autoregressive
 %Parameters initialisation
+
 momax=25;
 moregmode='LWR';
-regmode   = 'LWR';
-T=size(X_pp,2);
+regmode   = 'LWR'; 
+T=size(tsdata_pp,2);
 L=250; % largeur of sliding window L*downsample/fs sec
 num_window=floor(T/L-1);
-fpath='/its/home/gc349/CIFAR_guillaume/Plots';%save plots here
+fpath='/its/home/gc349/CIFAR_guillaume/plots/AnRa/VAR_modeling';%save plots here
 for j=1:size(EEG.ROI,1)
-    x=X_pp(ROI2num_dic(idx2ROI(j)),:);%select channels
+    tsdata=X_pp(ROI2num_dic(idx2ROI(j)),:);%select channels
     n_chan=size(x,1);
     %x=x(1:n_chan,:);
 %% Define sliding window 
