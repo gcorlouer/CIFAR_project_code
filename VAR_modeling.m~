@@ -55,7 +55,7 @@ close
 spectral_radius=zeros(num_window,1);
 for i=1:num_window
     ptic('\n*** tsdata_to_var... ');
-    [A,V] = tsdata_to_var(squeeze(tsdata_slided(:,:,i)),morder,regmode);
+    [VAR_coef,] = tsdata_to_var(squeeze(tsdata_slided(:,:,i)),morder,regmode);
     ptoc;
 % Check for failed regression
     assert(~isbad(A),'VAR estimation failed - bailing out');

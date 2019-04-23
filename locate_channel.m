@@ -29,13 +29,6 @@ for i=1:size(chan_name)
 end
 %% Show channels numbers in a given region
 ROI2num_dic=region2chan(chan_region,EEG.ROI);
-%% Create a structure with chan idx, ROIidx 
-chan_struct.ch_idx=1:1:size(chan_name,1);
-chan_struct.ch_idx=chan_struct.ch_idx';
-chan_struct.ch_name=chan_name;
-chan_struct.ROIidx=cell(size(chan_name,1),1);
-chan_struct.ROIidx{i,1}=ROI2idx(chan_region{i,1});
-chan_struct.ROI=chan_region;
 %% Create a structure array with chan idx, ROIidx
 for i=1:size(chan_name,1)
     ch_strct(i).ch_idx=i;
@@ -43,11 +36,8 @@ for i=1:size(chan_name,1)
     ch_strct(i).ROIidx=ROI2idx(chan_region{i,1});
     ch_strct(i).ROI=chan_region{i,1};
 end
-%% Locate channels in a specific ROI
+%% Return ROI idx for each channel idx
 chan2ROIidx=zeros(size(chan_name,1),1); %write ROidx correspinding to each chan idx
 for i=1:size(chan2ROIidx,1)
-    chan2ROIidx(i)=chan_struct(i).ROIidx;
-endchan2ROIidx=zeros(size(chan_name,1),1); %write ROidx correspinding to each chan idx
-for i=1:size(chan2ROIidx,1)
-    chan2ROIidx(i)=chan_struct(i).ROIidx;
+    chan2ROIidx(i)=ch_strct(i).ROIidx;
 end

@@ -17,9 +17,4 @@ window_size=1000;
 num_chan=size(tsdata_ROI,1);
 tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
-%% Partial correlation 
-pcorr=partialcorr(tsdata_ROI')
-imagesc(pcorr);
-colormap(jet);
-colorbar;
-title('Partial correlation')
+%% Correlation 
