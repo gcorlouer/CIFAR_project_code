@@ -39,7 +39,7 @@ sns.heatmap(corr, vmin=-1, cmap= 'coolwarm', annot=False, mask=mask)
 plt.title('Pearson correlation between all channels ') 
 #%% Select ROI
 #for j in range(max(chan_table['ROIidx'])-1): 
-ROIidx=23
+ROIidx=6
 #Retrieve channels belonging in selected ROI
 pick_chanidx=chan_table[chan_table['ROIidx']==ROIidx]['chan_idx'].tolist()
 pick_chan=[]

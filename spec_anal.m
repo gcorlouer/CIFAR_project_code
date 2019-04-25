@@ -18,7 +18,7 @@ num_chan=size(tsdata_ROI,1);
 tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
 %% Compute cpsd (autospec=True mean we compute the autospectral density)
-[cpsd_filt,f,fres] = tsdata_to_cpsd(tsdata_slided(:,:,60),[],fs,[],[],fres,'False',[]); 
+[cpsd_filt,f,fres] = tsdata_to_cpsd(tsdata_slided(:,:,60),[],fs,[],[],fres,'True',[]); 
 %% Plot cpsd
 %filtered cpsd
 figure; 
@@ -26,3 +26,8 @@ loglog(f,cpsd_filt)
 xlabel('Frequency')
 ylabel('Spectral density')
 title([num2str(fc) ' Hz High pass filtered power spectral density function, downsampled by ' num2str(dsample) ', AnRa, resting raw data, 2s window'])
+%% 
+% plot (auto-)spectra
+figure
+plot_cpsd(cpsd_filt, {'model','data'},fs,[],true);
+title('Autospectra');
