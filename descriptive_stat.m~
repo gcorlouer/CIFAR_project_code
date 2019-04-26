@@ -17,8 +17,22 @@ window_size=10000;
 num_chan=size(tsdata_ROI,1);
 tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
+%% Correlation 
+[corr_pears,pval_corr]=corr(tsdata_slided(:,:,2)');
+imagesc(corr_pears);
+colormap(jet);
+colorbar;
+title('Partial correlation AnRa, rest, good chans ')
 %% Partial correlation 
-pcorr=partialcorr(tsdata_slided(:,:,1)');
+[pcorr,pval_pcorr]=partialcorr(tsdata_slided(:,:,1)');
+imagesc(pcorr);
+colormap(jet);
+colorbar;
+title('Partial correlation AnRa, rest')
+%set(gca,'XTick',[1:2],'XTickLabel',{'poz','fp1'})
+%% Significance of partial correlation 
+alpha=0.0005; % want alpha v small to reduce false positive. Higher false negative is not so bad as 
+sig_pcorr=significance(pval_pcorr,alpha,'Bonferroni');
 imagesc(pcorr);
 colormap(jet);
 colorbar;
@@ -34,9 +48,15 @@ end
 imagesc(pcorr(good_ch_idx,good_ch_idx));
 colormap(jet);
 colorbar;
-title(['Partial correlation AnRa, rest, ROI ', num2str(pick_ROI))
+title(['Partial correlation AnRa, rest, ROI ', num2str(pick_ROI)])
 %% Get rid off channels with high enough correlation
+drop_chan=[]
 for i=1:size(pcorr,1)
-    for j=1:size(pcorr,1)
+    for j=i+1:size(pcorr,1)
         if pcorr(i,j)>= 0.8
-            drop_chan=horzcat(dorpchan,pick_chan_ROI(8))
+            drop_chan=horzcat(drop_chan,pick_chan(j))
+        else 
+            j=j+1;
+        end
+    end
+end
