@@ -28,15 +28,18 @@ fname_chan_table='ch_table_AnRa.csv'
 path_chan_table=fpath_subject+fname_chan_table
 chan_table=pd.read_csv(path_chan_table)
 chan_table=chan_table.dropna(axis=1,how='all') #drop NaN
+chan_table_ROI=chan_table.sort_values('ROIidx') #sort index per ascending ROI
 #%% Correlation between all  channels
-df.columns=chan_table['chan_idx'] #change name of df columns to chidx
-corr = df.corr('pearson')
+df.columns=chan_table_ROI['ROIidx'] #change name of df columns to chidx
+corr= df.corr('pearson')
 ##Draw heatmap of correlation between all channels
 mask = np.zeros_like(corr, dtype=np.bool)
 mask[np.triu_indices_from(mask)] = True
 plt.figure()
 sns.heatmap(corr, vmin=-1, cmap= 'coolwarm', annot=False, mask=mask)
-plt.title('Pearson correlation between all channels ') 
+plt.title('Pearson correlation between all channels grouped by ROI ')
+#%% Partial correlation
+# TODO : window time series and compute par_corr
 #%% Select ROI
 #for j in range(max(chan_table['ROIidx'])-1): 
 ROIidx=6
