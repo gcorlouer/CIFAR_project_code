@@ -11,7 +11,7 @@ tsdata_pp=tsdata2preprocessed(tsdata,dsample,fc,fs,fres,filt_order); %filter and
 pick_ROI=1:1:22;
 pick_ROI=pick_ROI';
 pick_chan=[];
-tsdata_ROI=tsdata2ROI(tsdata_pp,pick_ROI,pick_chan,chan2ROIidx);
+[tsdata_ROI,pick_chan]=tsdata2ROI(tsdata_pp,pick_ROI,pick_chan,chan2ROIidx);
 %% Slide window 
 window_size=2000;
 num_chan=size(tsdata_ROI,1);
@@ -49,7 +49,7 @@ hold off
 title(['Model orders along',num2str(window_size/fs),' sec silding window, AnRa, rest, raw'])
 xlabel('Sliding window')
 ylabel('Model order')
-filename=strcat('morder_ROI_2sw');
+filename=strcat('morder_ROI_2sw_2ds');
 saveas(gca, fullfile(path2save, filename), 'png');
 close
 %% VAR estimation and spectral radius 
@@ -77,6 +77,6 @@ title('Spectral radius along silding window')
 xlabel('Sliding window')
 ylabel('Spectral radius')
 ylim([0.8,1])
-filename=strcat('specrad_ROI_2sw');
+filename=strcat('specrad_ROI_2sw_2ds');
 saveas(gca, fullfile(path2save, filename), 'png');
 close;
