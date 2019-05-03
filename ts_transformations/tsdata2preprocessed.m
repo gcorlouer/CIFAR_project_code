@@ -8,7 +8,7 @@ function tsdata_pp=tsdata2preprocessed(tsdata,dsample,fc,fs,fres,filt_order)
 %% High pass Filtering the signal :
 fn=fs/2; %Nyquist frequency
 [b,a]=butter(filt_order,fc/fn,'high'); %Butterworth High pass filter
-fvtool(b,a); %visualise filter
+%fvtool(b,a); %visualise filter
 tsdata_filt=filtfilt(b,a,tsdata')'; %Zero phase filtering in forward and backward direction
 %% Downsampling
 tsdata_pp=downsample(tsdata_filt,dsample,[]);

@@ -17,8 +17,14 @@ window_size=1000;
 num_chan=size(tsdata_ROI,1);
 tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
+%% Count outliers
+sdfac=3; 
+madfac=6;
+repmean='True';
+repmed='True';
+ts_picked=tsdata_slided(:,:,1);
+[ts_madout,outs]=routl_m(ts_picked,madfac,repmed);
+[ts_out,nouts] = routl(ts_picked,sdfac,repmean);
 %% Select window
 figure
-ts_picked=tsdata_slided(:,:,1);
-plot_tsdata(ts_picked,[],[],[]);
-%% Count outliers
+plot_tsdata(ts_madout,[],[],[]);
