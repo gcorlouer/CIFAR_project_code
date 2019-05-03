@@ -99,3 +99,9 @@ g=sns.FacetGrid(df_ROI,col='chan_idx', col_wrap=4)
 g.map(sns.distplot, "value", fit=norm, bins=200, kde=False)
 g.add_legend(title='Histograms of ROI %s fitted by normal dist'%ROIidx)
 plt.savefig(path2plot)
+#%%  Time series visualisation
+df.median(axis=1).iloc[0:1000].plot()
+plt.xlabel('time (ms)')  
+plt.ylabel('Potential (mV)')
+plt.title('Median channel time series in a window, raw data, AnRa')
+#%% All box plot 
