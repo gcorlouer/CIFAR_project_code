@@ -4,7 +4,7 @@ tsdata=double(EEG.data);
 fres=2^11;
 fs=EEG.srate;
 fc=1; %cutoff frequency
-filt_order=2;
+filt_order=1;
 dsample=1;
 tsdata_pp=tsdata2preprocessed(tsdata,dsample,fc,fs,fres,filt_order); %filter and downsample
 %% Select chans
@@ -19,18 +19,18 @@ tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
 ts_slided=squeeze(tsdata_slided(:,:,1)); %Pick a specific window
 %% VAR modeling
-momax=25;
+momax=75;
 moregmode='LWR';
 regmode   = 'LWR'; 
 num_window=size(tsdata_slided,3);
 ptic('\n*** tsdata_to_varmo... ');
-[moaic,mobic,mohqc,molrt] = tsdata_to_varmo(ts_slided,momax,moregmode);
+[moaic,mobic,mohqc,molrt] = tsdata_to_varmo(ts_out,momax,moregmode);
 ptoc;
 morder=input('morder=')
 %% VAR estimation and spectral radius 
 spectral_radius=zeros(num_window,1);
 ptic('\n*** tsdata_to_var... ');
-[A,V] = tsdata_to_var(ts_slided,morder,regmode);
+[A,V] = tsdata_to_var(ts_out,morder,regmode);
 ptoc;
 % Check for failed regression
 assert(~isbad(A),'VAR estimation failed - bailing out');
