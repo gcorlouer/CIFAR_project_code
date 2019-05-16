@@ -38,7 +38,7 @@ for i=1:num_window-1
     ptic('\n*** tsdata_to_varmo... ');
     [moaic,mobic,mohqc,molrt] = tsdata_to_varmo(ts_out,momax,moregmode);
     ptoc;
-    morders(i,1)=moselect('HQC','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
+    morders(i,1)=moselect('BIC','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
     %LRT=moselect('LRT','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
     %BIC=moselect('BIC','AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
 %     errlow(i,1)=morders(i,1)-BIC;
@@ -56,7 +56,7 @@ bar(sliding_window,morders)
 title(['Model orders along',num2str(window_size/fs),' sec silding window, AnRa, rest, raw'])
 xlabel('Sliding window')
 ylabel('Model order')
-filename=strcat('morder_allROI_10sw_1ds_3.5sdafc_HQC');
+filename=strcat('morder_allROI_10sw_1ds_3.5sdafc');
 saveas(gca, fullfile(path2save, filename), 'png');
 close
 %% VAR estimation and spectral radius 
@@ -90,7 +90,7 @@ bar(sliding_window,spectral_radius);
 title('Spectral radius along silding window')
 xlabel('Sliding window')
 ylabel('Spectral radius')
-ylim([0.95,1])
-filename=strcat('specrad_allROI_10sw_1ds_3.5sdafc_HQC');
+ylim([0.8,1])
+filename=strcat('specrad_allROI_10sw_1ds_3.5sdafc');
 saveas(gca, fullfile(path2save, filename), 'png');
 close;

@@ -2,7 +2,7 @@
 %% Preprocessed
 tsdata=double(EEG.data); 
 fres=2^11;
-fs=EEG.srate;
+fs=EEG.srate;  
 fc=1; %cutoff frequency
 filt_order=1;
 dsample=1;
