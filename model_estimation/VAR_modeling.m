@@ -3,17 +3,17 @@
 tsdata=double(EEG.data); 
 fres=2^11;
 fs=EEG.srate;
-fc=1; %cutoff frequency
+fc=2; %cutoff frequency
 filt_order=2;
 dsample=1;
 tsdata_pp=tsdata2preprocessed(tsdata,dsample,fc,fs,fres,filt_order); %filter and downsample
 %% Select chans
-pick_ROI=1:1:22;
+pick_ROI=1:1:15;
 pick_ROI=pick_ROI';
 pick_chan=[];
 [tsdata_ROI,pick_chan]=tsdata2ROI(tsdata_pp,pick_ROI,pick_chan,chan2ROIidx);
 %% Slide window 
-window_size=10000;
+window_size=5000;
 num_chan=size(tsdata_ROI,1);
 tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
@@ -56,7 +56,7 @@ bar(sliding_window,morders)
 title(['Model orders along',num2str(window_size/fs),' sec silding window, AnRa, rest, raw'])
 xlabel('Sliding window')
 ylabel('Model order')
-filename=strcat('morder_allROI_10sw_1ds_3.5sdafc_HQC');
+filename=strcat(num2str(fc), 'Hz, morder_15ROI_',num2str(window_size/fs), 'sw_1ds_3.5sdafc_HQC');
 saveas(gca, fullfile(path2save, filename), 'png');
 close
 %% VAR estimation and spectral radius 
@@ -91,6 +91,6 @@ title('Spectral radius along silding window')
 xlabel('Sliding window')
 ylabel('Spectral radius')
 ylim([0.95,1])
-filename=strcat('specrad_allROI_10sw_1ds_3.5sdafc_HQC');
+filename=strcat(num2str(fc), 'Hz,specrad_15ROI_',num2str(window_size/fs), 'sw_1ds_3.5sdafc_HQC');
 saveas(gca, fullfile(path2save, filename), 'png');
 close;

@@ -4,7 +4,7 @@ tsdata=double(EEG.data);
 fres=2^11;
 fs=EEG.srate;
 fc=1; %cutoff frequency
-filt_order=2;
+filt_order=1;
 dsample=1;
 tsdata_pp=tsdata2preprocessed(tsdata,dsample,fc,fs,fres,filt_order); %filter and downsample
 %% Select chans
@@ -13,13 +13,13 @@ pick_ROI=pick_ROI';
 pick_chan=[];
 tsdata_ROI=tsdata2ROI(tsdata_pp,pick_ROI,pick_chan,chan2ROIidx);
 %% Slide window 
-window_size=10000;
+window_size=100000;
 num_chan=size(tsdata_ROI,1);
 tsdata_length=size(tsdata_ROI,2);
 tsdata_slided=tsdata2slided(tsdata_ROI, window_size,num_chan,tsdata_length);
 %% Remove outliers
 num_window=size(tsdata_slided,3);
-for i=1:num_window-1
+for i=1:num_window
     sdfac=3.5; 
     madfac=8;
     repmean='False';
@@ -36,8 +36,8 @@ for i=1:num_window-1
     loglog(f,cpsd_filt)
     xlabel('Frequency')
     ylabel('Spectral density')
-    title([num2str(fc) ' Hz High pass filtered cpsd, downsampled by ' num2str(dsample) ', AnRa, resting raw data, 10s window, outliers removed, all ROI'])
-    filename=strcat('cpsd_10sw_3.5sdfac_1fc_rest_raw_allROI_window',num2str(i));
+    title([num2str(fc) ' Hz filtered cpsd, AnRa, resting raw data, ' num2str(window_size/500) 's window, outl, all ROI'])
+    filename=strcat('cpsd_',num2str(window_size/500),'sw_3.5sdfac_1fc_rest_raw_allROI_window',num2str(i));
     saveas(gca, fullfile(path2save, filename), 'png');
     close
 end

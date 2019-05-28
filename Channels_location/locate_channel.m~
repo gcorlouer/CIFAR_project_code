@@ -1,4 +1,4 @@
-%% Writes ROI and label channels in the EEG structure
+%% Add regions and label channels in the EEG structure
 load('CIFAR_guillaume/CIFAR_data/CIFAR/iEEG_10/subjects/AnRa/SUMAprojectedElectrodes.mat');
 elec_region=SUMAprojectedElectrodes.aparcaseg.bestLabel.labels;
 elec_region=elec_region';
@@ -29,7 +29,7 @@ for i=1:size(chan_name)
 end
 %% Show channels numbers in a given region
 ROI2num_dic=region2chan(chan_region,EEG.ROI);
-%% Create a structure array relating chan idx, ROIidx, ch_name, ROI_name
+%% Create a structure array with chan idx, ROIidx
 for i=1:size(chan_name,1)
     ch_strct(i).ch_idx=i;
     ch_strct(i).ch_name=chan_name{i,1};

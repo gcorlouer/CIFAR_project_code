@@ -1,4 +1,4 @@
-% For any regions it records all channels number in this region
+% For any ROI output all channels indices in this ROI
 function dict=region2chan(Lr,ROI)
 keySet=ROI;%Cell of regions of interests
 valueSet=cell(size(ROI));
