@@ -1,0 +1,91 @@
+% Plot a single electrode:
+function S = plot_Fs_electrode_example_code(initials,H,S,SUMAsrf,elocDir,ch_labels,eColor,eSize,textFlag,shading,order)
+
+if isempty(H)||isempty(S)
+    error('Missing arguments!');
+end
+if isempty(eSize)
+    eSize=3;
+    fprintf('Elecrodes size was set to default (%d mm)',eSize);
+end
+
+if isempty(order)
+    order='top';
+end
+
+if isempty(eColor)
+    fprintf('Elecrodes color was set to default (black)');
+    eColor=[0 0 0];
+end
+
+if ~exist(fullfile(elocDir,'SUMAprojectedElectrodes.mat'),'file')
+    warning('Elecrodes location file does not exist');
+else
+    load(fullfile(elocDir,'SUMAprojectedElectrodes.mat'));
+    fprintf('\n Loading Elecrodes location file: %s \n',elocDir);
+end
+
+set(0, 'CurrentFigure', H); hold on;
+child_handles=findall(gcf);
+
+ch=[];
+for i=1:numel(ch_labels)
+    if size(eColor,1)>1
+        color=eColor(i,:);
+    else
+        color=eColor;
+    end
+    if numel(eSize)>1
+        s=eSize(i);
+    else
+        s=eSize;
+    end
+    
+    % Electrode in 3d Mesh:
+    [xx,yy,zz]=sphere(100);
+    R=s; % sphere radius
+    xx=xx*R; yy=yy*R; zz=zz*R;
+    
+    ch.label=ch_labels{i};
+    ch.idx=find(strcmpi(SUMAprojectedElectrodes.elecNames,ch.label));
+    fprintf('\n %s - index: %d \n',ch.label,ch.idx);
+    if isempty(ch.idx)
+        warning(sprintf('*** Cannot find electrode %s ***',ch.label));
+        beep;
+        continue
+    end
+    
+    if strcmpi(SUMAprojectedElectrodes.hemisphere(ch.idx),'lh')
+        ch.hemi=1;
+        axesHandle=unique(findobj(child_handles,'Tag','LH'));
+    elseif strcmpi(SUMAprojectedElectrodes.hemisphere(ch.idx),'rh')
+        ch.hemi=2;
+        axesHandle=unique(findobj(child_handles,'Tag','RH'));
+    else
+        warning(sprintf('%s - hemisphere data is missing! please check \n',ch.label));
+    end
+    
+    ch.nodeIDX=SUMAprojectedElectrodes.nodeInd(ch.idx);
+    ch.eCrd=SUMAsrf(ch.hemi).vertices.afniXYZ(ch.nodeIDX,:);
+    % Alternatives:
+    ch.aparcTag=SUMAprojectedElectrodes.aparcaseg.bestLabel.labels(ch.idx);
+    ch.dist2srf=SUMAprojectedElectrodes.distanceInMMToMesh(ch.idx);
+    
+    for h=axesHandle'
+        % Plot 2d circles when using flat brain:
+        if strcmpi(S.plotsurf,'flat')
+            ch.handle=scatter3(h,ch.eCrd(1),ch.eCrd(2),ch.eCrd(3)+0.001,20*s,'o','Markerfacecolor',color,'Markeredgecolor','k','LineWidth',0.5);
+        else
+            ch.handle=surf(h,double(xx+ch.eCrd(1)'),double(yy+ch.eCrd(2)'),double(zz+ch.eCrd(3)'),'facecolor',color,'edgecolor','none','FaceLighting',shading,'SpecularStrength',0.2); %,'edgeLighting','flat'
+        end
+        if textFlag, set(ch.handle,'buttondownfcn',sprintf('disp(''%s_%s'')',initials,ch.label)); end
+    end
+    
+    if isfield(ch,'handle')
+        uistack(ch.handle,order)
+        set(ch.handle,'tag',[initials '_' ch.label]);
+    end
+end
+
+end
+
