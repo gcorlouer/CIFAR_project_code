@@ -30,7 +30,7 @@ chan_table=pd.read_csv(path_chan_table)
 chan_table=chan_table.dropna(axis=1,how='all') #drop NaN
 chan_table_ROI=chan_table.sort_values('ROIidx') #sort index per ascending ROI
 #%% Correlation between all  channels
-df.columns=chan_table_ROI['ROIidx'] #change name of df columns to chidx
+df.columns=chan_table['chan_idx'] #change name of df columns to chidx
 corr= df.corr('pearson')
 ##Draw heatmap of correlation between all channels
 mask = np.zeros_like(corr, dtype=np.bool)
@@ -61,19 +61,25 @@ plt.savefig(path2plot)
 ## Violins
 # Set up the matplotlib figure
 fig_name='violin_ROI%s.png'%ROIidx
-path2plot=rep2plot+fig_name
-f, ax = plt.subplots(figsize=(11, 6))
+#path2plot=rep2plot+fig_name
+#f, ax = plt.subplots(figsize=(11, 6))
 # Draw a violinplot with a narrower bandwidth than the default bw=.0.3, cut=1, linewidth=1
-sns.violinplot(data=df.loc[:, pick_chanidx], scale='count', inner='quartile', palette="Set3", bw=0.3)
-plt.title('Violin plot of chans distributions in ROI %s' %ROIidx)
+sns.violinplot(data=df.loc[:, pick_chanidx], scale='count', inner='quartile', color="skyblue", bw=0.3)
+plt.title(fname+' violin plot of electric potential distribution per channel in ROI %s' %ROIidx, fontsize=24)
+plt.xlabel('Channel index', fontsize=24)
+plt.ylabel(u'Potential (${\mu}V$)', fontsize=24)
+plt.tick_params(labelsize=22);
 plt.savefig(path2plot)
 ##Box plot
 fig_name='boxp_ROI%s.png'%ROIidx
-path2plot=rep2plot+fig_name
+#path2plot=rep2plot+fig_name
 plt.figure()
-sns.boxplot(data = df.loc[:, pick_chanidx])
-plt.title('Box plot of chans distributions in ROI %s' %ROIidx)
-plt.savefig(path2plot)
+sns.boxplot(data = df.loc[:, pick_chanidx], color="skyblue")
+plt.title(fname+ ' box plot of electric potential distribution per channel in ROI %s' %ROIidx, fontsize=24)
+#plt.savefig(path2plot)
+plt.xlabel('Channel index', fontsize=24)
+plt.ylabel(u'Potential (${\mu}V$)', fontsize=24)
+plt.tick_params(labelsize=22);
 ## Cross spectral power density
 fig_name='psd_ROI%s.png'%ROIidx
 path2plot=rep2plot+fig_name
