@@ -1,0 +1,20 @@
+<ATLAS
+  atlas_name="aparc+aseg_rank"
+  dset_name="aparc+aseg_rank.nii"
+  template_space="ORIG"
+  description="My Atlas"
+  comment="Created from /Volumes/raid.bot/home/ziad/FSrecon/N27p/FSrecon/SUMA with:&#x0a;    @MakeLabelTable -atlasize_labeled_dset aparc+aseg_rank.nii" />
+<ATLAS
+  atlas_name="aparc.a2009s+aseg_rank"
+  dset_name="aparc.a2009s+aseg_rank.nii"
+  template_space="ORIG"
+  description="My Atlas"
+  comment="Created from /Volumes/raid.bot/home/ziad/FSrecon/N27p/FSrecon/SUMA with:&#x0a;    @MakeLabelTable -atlasize_labeled_dset aparc.a2009s+aseg_rank.nii" />
+<ATLAS
+ atlas_name="aseg_rank"
+ dset_name="aseg_rank.nii"
+ template_space="ORIG"
+ description="My Atlas"
+ comment="Created from /Volumes/raid.bot/home/ziad/FSrecon/N27p/FSrecon/SUMA with:
+    @MakeLabelTable -atlasize_labeled_dset aseg_rank.nii"
+></ATLAS>
