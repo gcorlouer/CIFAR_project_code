@@ -17,7 +17,6 @@ nobs = 10000;
 specrad = 0.98;
 chanum=1;
 [tsdata,var_coef,corr_res]=var_sim(connect_matrix, morder, specrad, nobs);
-nchans=size(tsdata,1);
 sampling=1:1:nobs;
 samlping_window=5000:7000;
 plot(samlping_window,tsdata(chanum,samlping_window))
@@ -96,8 +95,8 @@ if isnumeric(plotm), plotm = plotm+1; end
 plot_gc(pdata,ptitle,[],maxp,plotm);
 %% Spectral analysis
 fs = 500;
-[cpsd,f,fres] = tsdata_to_cpsd(tsdata,false,fs,[],[],fres,true,false);
-plot_autocpsd(cpsd,f,fs,nchans);
+[cpsd,f,fres] = tsdata_to_cpsd(tsdata,fs);
+apsd
 %% Spectral GC
 % Calculate spectral pairwise-conditional causalities resolution from VAR model
 % parameters. If not specified, we set the frequency resolution to something

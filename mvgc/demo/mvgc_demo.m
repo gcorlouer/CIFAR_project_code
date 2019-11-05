@@ -16,7 +16,7 @@ rmi       = 0.5;     % residuals log-generalised correlation (multi-information)
                      % g = -log|R|. g = 0 yields zero correlation,g = [] is uniform random
                      % on space of correlation matrices
 
-% VAR model order estimation
+c% VAR model order estimation
 
 moregmode = 'LWR';   % VAR model estimation regression mode ('OLS' or 'LWR')
 mosel     = 'LRT';   % model order selection ('ACT', 'AIC', 'BIC', 'HQC', 'LRT', or supplied numerical value)
