@@ -2,7 +2,9 @@
 %% TODO: 
 %-Test score for GC comparison
 %-Sliding windows utilities
-%-Try different model order and spectral radius
+%-Extract other frequencies and look GC between different HFB
+%-create a function that output GC plots
+%add title to plots
 %% Data input
 tsdim=6;
 varmorder = 5;
@@ -10,7 +12,7 @@ nobs = 30000;
 specrad = 0.98;
 fres=1024;
 if ~exist('seed', 'var'), seed  = 0; end % random seed (0 for unseeded)
-if ~exist('plotm','var'), plotm = 0; end % plot mode (figure number offset, or Gnuplot terminal string)
+%if ~exist('plotm','var'), plotm = 0; end % plot mode (figure number offset, or Gnuplot terminal string)
 %% Simulate data
 connect_matrix=cmatrix(tsdim) %causal ground truth
 [tsdata,var_coef_ts,corr_res_ts]=var_sim(connect_matrix, varmorder, specrad, nobs);
@@ -92,8 +94,8 @@ maxpwcgc = 1.1*max(nanmax(pwcgc_envelope(:),nanmax(pwcgc_tsdata(:))));
 pdata = {pwcgc_tsdata,pwcgc_envelope;sigF,sigLR};
 ptitle = {'PWCGC (tsdata)','PWCGC (HF envelope)'; sprintf('F-test (%s-regression)',testats),sprintf('LR test (%s-regression)',testats)};
 maxp = [maxpwcgc maxpwcgc;1 1];%???? 
-if isnumeric(plotm), plotm = plotm+1; end
-plot_gc(pdata,ptitle,[],[],plotm);
+%if isnumeric(plotm), plotm = plotm+1; end
+plot_gc(pdata,ptitle,[],[],[]);
 %% Spectral analysis
 fs = 500;
 [cpsd_tsdata,f,fres] = tsdata_to_cpsd(tsdata,false,fs,[],[],fres,true,false);
@@ -106,7 +108,7 @@ saveas(gcf,apsd_tsdata_fpath);
 [cpsd_envelope,f,fres] = tsdata_to_cpsd(tsdata,false,fs,[],[],fres,true,false);
 apsd_envelope_figure_path=[pwd,'\figures\Hilbert_envelope\'];
 apsd_envelope_fname=['auto_cpsd_envelope',num2str(morder),'_''tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
-apsd_envelope_fpath=[apsd_envelope_figure_path,apsd_tsdata_fname];
+apsd_envelope_fpath=[apsd_envelope_figure_path,apsd_envelope_fname];
 figure
 plot_autocpsd(cpsd_tsdata,f,fs,tsdim);
 saveas(gcf,apsd_envelope_fpath);
@@ -149,9 +151,20 @@ saveas(gca,tgc_fpath);
 
 % Plot spectral causal graphs.
 
-if isnumeric(plotm), plotm = plotm+1; end
-plot_sgc({spwcgc_tsdata,spwcgc_envelope},freqs,'Spectral Granger causalities (blue = tsdata, red = envelope)',plotm);
+plot_sgc({spwcgc_tsdata,spwcgc_envelope},freqs,'Spectral Granger causalities (blue = tsdata, red = envelope)',[]);
 sgc_figure_path=[pwd,'\figures\Hilbert_envelope\'];
 sgc_fname=['spectral_gc_',num2str(fcut_low),'-',num2str(fcut_high),'Hz_','env_morder',num2str(env_morder),'_','morder',num2str(morder),'_''tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
 sgc_fpath=[sgc_figure_path,sgc_fname];
 saveas(gcf,sgc_fpath);
+
+%% Plot finer spectral graph
+k=0;
+for i=1:tsdim
+    for j=1:tsdim
+        k=k+1;
+        subplot(2*tsdim,tsdim,k)
+        plot(freqs, squeeze(spwcgc_envelope(i,j,:)))
+        subplot(2*tsdim,tsdim,k+1)
+        plot(freqs, squeeze(spwcgc_tsdata(i,j,:)))
+    end
+end
