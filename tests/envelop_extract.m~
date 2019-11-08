@@ -1,57 +1,50 @@
 %% Enveloppe exctraction tests
 %% TODO: 
-%- 
-%-Maybe sliding windows utilities
-%-Test score to compare GC significance
-%-Check cpsd plot, also spectral GC yields weird results with significant
-%GC outside filtered frequency
-%Multi channel envelope extraction
-%% Questions 
-% Filtering iir or fir may not be minimum phase? So might also mess up GC
-% 
-%% Data
-connect_matrix = [1 0 1 ;1 1 0; 1 0 1];
-morder = 8;
-moact = morder;
-nobs = 10000;
+%-Test score for GC comparison
+%-Sliding windows utilities
+%-Try different model order and spectral radius
+%% Data input
+tsdim=6;
+varmorder = 5;
+nobs = 30000;
 specrad = 0.98;
-chanum=1;
-[tsdata,var_coef,corr_res]=var_sim(connect_matrix, morder, specrad, nobs);
-sampling=1:1:nobs;
-samlping_window=5000:7000;
-plot(samlping_window,tsdata(chanum,samlping_window))
+fres=1024;
 if ~exist('seed', 'var'), seed  = 0; end % random seed (0 for unseeded)
 if ~exist('plotm','var'), plotm = 0; end % plot mode (figure number offset, or Gnuplot terminal string)
-
-% MVGC (time domain) statistical inference
-
-testats    = 'dual';  % test statistic ('single', 'dual' or 'both')
-alpha     = 0.05;    % significance level for Granger casuality significance test
-mhtc      = 'FDR';   % multiple hypothesis test correction (see routine 'significance')
+%% Simulate data
+connect_matrix=cmatrix(tsdim) %causal ground truth
+[tsdata,var_coef_ts,corr_res_ts]=var_sim(connect_matrix, varmorder, specrad, nobs);
 %% Filter data 
-[fs,fcut_low,fcut_high,filt_order, iir]=deal(500,80,120,128,0);
+[fs,fcut_low,fcut_high,filt_order, fir]=deal(500,80,100,128,0);
 tsdata_filtered=tsdata2ts_filtered(tsdata,fs,fcut_low,fcut_high,filt_order, iir);
 %% Envelope extraction
 envelope = tsdata2envelope(tsdata_filtered);
-%% Plot envelope 
-sampling_range = samlping_window;
-plot_envelope(tsdata_filtered,envelope,sampling_range, chanum, fs);
+%% Plot envelope
+chanum=1; %select channel to plot
+samlping_window=5000:7000;
+trange = samlping_window;
+plot_envelope(tsdata_filtered,envelope,trange, chanum, fs);
+save
 %% VAR modeling of the enveloppe
 % VAR model order estimation
+
 moregmode = 'LWR';   % VAR model estimation regression mode ('OLS' or 'LWR')
 mosel     = 'LRT';   % model order selection ('ACT', 'AIC', 'BIC', 'HQC', 'LRT', or supplied numerical value)
 momax     = 50;      % maximum model order for model order selection
+
 % VAR model parameter estimation
 regmode   = 'OLS';   % VAR model estimation regression mode ('OLS' or 'LWR')
 
-% Calculate and plot VAR model order estimation criteria up to specified maximum model order.
+%Calculate and plot VAR model order estimation criteria up to specified maximum model order.
+
 ptic('\n*** tsdata_to_varmo... ');
 if isnumeric(plotm), plotm = plotm+1; end
 [moaic,mobic,mohqc,molrt] = tsdata_to_varmo(envelope,momax,moregmode,[],[],plotm);
 ptoc;
 
 % Select and report VAR model order.
-morder = input('morder = ')
+
+env_morder = input('morder = ')
 % morder = moselect(sprintf('VAR model order selection (max = %d)',momax), mosel,'ACT',moact,'AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
 % assert(morder > 0,'selected zero model order! GCs will all be zero!');
 % if morder >= momax, fprintf(2,'*** WARNING: selected maximum model order (may have been set too low)\n'); end
@@ -59,44 +52,64 @@ morder = input('morder = ')
 % Estimate VAR model of selected order from data.
 
 ptic('\n*** tsdata_to_var... ');
-[estimated_var,estimated_res] = tsdata_to_var(envelope,morder,regmode);
+[var_envelope,res_envelope] = tsdata_to_var(envelope,env_morder,regmode);
 ptoc;
 
 % Check for failed regression
 
-assert(~isbad(estimated_var),'VAR estimation failed - bailing out');
-info = var_info(estimated_var,estimated_res);
+assert(~isbad(var_envelope),'VAR estimation failed - bailing out');
+info = var_info(var_envelope,res_envelope);
 assert(~info.error,'VAR error(s) found - bailing out');
 %% GC estimation of envelope
+% MVGC (time domain) statistical inference
+
+testats    = 'dual';  % test statistic ('single', 'dual' or 'both')
+alpha     = 0.05;    % significance level for Granger casuality significance test
+mhtc      = 'FDR';   % multiple hypothesis test correction (see routine 'significance')
 ptic('*** var_to_pwcgc... ');
-[pwcgc,stats] = var_to_pwcgc(estimated_var,estimated_res,testats,envelope,regmode);
+
+%Estimation
+
+[pwcgc_envelope,stats] = var_to_pwcgc(var_envelope,res_envelope,testats,envelope,regmode);
 ptoc;
-assert(~isbad(pwcgc,false),'GC estimation failed');
+assert(~isbad(pwcgc_envelope,false),'GC estimation failed');
 
 % Significance test (F- and likelihood ratio), adjusting for multiple hypotheses.
 
 sigF  = significance(stats.(testats).F.pval, alpha,mhtc);
 sigLR = significance(stats.(testats).LR.pval,alpha,mhtc);
 
-% For comparison, we also calculate the actual pairwise-conditional causalities
+% Calculate the actual pairwise-conditional causalities of data
 
 ptic('*** var_to_pwcgc... ');
-FF = var_to_pwcgc(var_coef,corr_res);
+pwcgc_tsdata = var_to_pwcgc(var_coef_ts,corr_res_ts);
 ptoc;
 % assert(~isbad(FF,false),'GC calculation failed');
 
 % Plot time-domain causal graph, p-values and significance.
 
-maxF = 1.1*max(nanmax(pwcgc(:),nanmax(FF(:))));
-pdata = {FF,pwcgc;sigF,sigLR};
-ptitle = {'PWCGC (actual)','PWCGC (estimated)'; sprintf('F-test (%s-regression)',testats),sprintf('LR test (%s-regression)',testats)};
-maxp = [maxF maxF;1 1];
+maxpwcgc = 1.1*max(nanmax(pwcgc_envelope(:),nanmax(pwcgc_tsdata(:))));
+pdata = {pwcgc_tsdata,pwcgc_envelope;sigF,sigLR};
+ptitle = {'PWCGC (tsdata)','PWCGC (HF envelope)'; sprintf('F-test (%s-regression)',testats),sprintf('LR test (%s-regression)',testats)};
+maxp = [maxpwcgc maxpwcgc;1 1];%???? 
 if isnumeric(plotm), plotm = plotm+1; end
-plot_gc(pdata,ptitle,[],maxp,plotm);
+plot_gc(pdata,ptitle,[],[],plotm);
 %% Spectral analysis
 fs = 500;
-[cpsd,f,fres] = tsdata_to_cpsd(tsdata,fs);
-apsd
+[cpsd_tsdata,f,fres] = tsdata_to_cpsd(tsdata,false,fs,[],[],fres,true,false);
+apsd_tsdata_figure_path=[pwd,'\figures\Hilbert_envelope\'];
+apsd_tsdata_fname=['auto_cpsd_tsdata',num2str(morder),'_''tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
+apsd_tsdata_fpath=[apsd_tsdata_figure_path,apsd_tsdata_fname];
+figure
+plot_autocpsd(cpsd_tsdata,f,fs,tsdim);
+saveas(gcf,apsd_tsdata_fpath);
+[cpsd_envelope,f,fres] = tsdata_to_cpsd(tsdata,false,fs,[],[],fres,true,false);
+apsd_envelope_figure_path=[pwd,'\figures\Hilbert_envelope\'];
+apsd_envelope_fname=['auto_cpsd_envelope',num2str(morder),'_''tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
+apsd_envelope_fpath=[apsd_envelope_figure_path,apsd_tsdata_fname];
+figure
+plot_autocpsd(cpsd_tsdata,f,fs,tsdim);
+saveas(gcf,apsd_envelope_fpath);
 %% Spectral GC
 % Calculate spectral pairwise-conditional causalities resolution from VAR model
 % parameters. If not specified, we set the frequency resolution to something
@@ -104,22 +117,41 @@ apsd
 % warn if the calculated resolution is very large, as this may cause problems.
 
 ptic(sprintf('\n*** var_to_spwcgc (at frequency resolution = %d)... ',fres));
-spwcgc = var_to_spwcgc(estimated_var,estimated_res,fres);
+spwcgc_envelope = var_to_spwcgc(var_envelope,res_envelope,fres);
 ptoc;
-assert(~isbad(spwcgc,false),'spectral GC estimation failed');
+assert(~isbad(spwcgc_envelope,false),'spectral GC estimation failed');
 
-% For comparison, we also calculate the actual pairwise-conditional spectral causalities
+% Compute spectral GC of simulated data
 
 ptic(sprintf('*** var_to_spwcgc (at frequency resolution = %d)... ',fres));
-actual_spwcgc = var_to_spwcgc(var_coef,corr_res,fres);
+spwcgc_tsdata = var_to_spwcgc(var_coef_ts,corr_res_ts,fres);
 ptoc;
-assert(~isbad(actual_spwcgc,false),'spectral GC calculation failed');
+assert(~isbad(spwcgc_tsdata,false),'spectral GC calculation failed');
 
-% Get frequency vector according to the sampling rate.
-
+% Get frequency vector 
 freqs = sfreqs(fres,fs);
+
+%% Granger causality calculation: frequency domain -> time-domain  (<mvgc_schema.html#3 |A15|>)
+%Compute pwcgc of initial data integreted along specific frequency bands
+band=[fcut_low, fcut_high];
+pwcgc_ts_int = bandlimit(spwcgc_tsdata,3,fres,band); 
+pwcgc_envelope_int = bandlimit(spwcgc_envelope,3,fres,band);
+% Plot time-domain causal graph, p-values and significance.
+
+pdata = {pwcgc_ts_int,pwcgc_envelope;sigF,sigLR};
+ptitle = {[num2str(fcut_low),'-',num2str(fcut_high),'Hz',' ', 'PWCGC (tsdata)'],'PWCGC (HF envelope)'; sprintf('F-test (%s-regression)',testats),sprintf('LR test (%s-regression)',testats)};
+
+tgc_figure_path=[pwd,'\figures\Hilbert_envelope\'];
+tgc_fname=['temporal_gc_',num2str(fcut_low),'-',num2str(fcut_high),'Hz_','env_morder',num2str(env_morder),'_','morder',num2str(morder),'_''tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
+tgc_fpath=[tgc_figure_path,tgc_fname];
+plot_gc(pdata,ptitle,[],[],plotm);
+saveas(gca,tgc_fpath);
 
 % Plot spectral causal graphs.
 
 if isnumeric(plotm), plotm = plotm+1; end
-plot_sgc({actual_spwcgc,spwcgc},freqs,'Spectral Granger causalities (blue = actual, red = estimated)',plotm);
+plot_sgc({spwcgc_tsdata,spwcgc_envelope},freqs,'Spectral Granger causalities (blue = tsdata, red = envelope)',plotm);
+sgc_figure_path=[pwd,'\figures\Hilbert_envelope\'];
+sgc_fname=['spectral_gc_',num2str(fcut_low),'-',num2str(fcut_high),'Hz_','env_morder',num2str(env_morder),'_','morder',num2str(morder),'_''tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
+sgc_fpath=[sgc_figure_path,sgc_fname];
+saveas(gcf,sgc_fpath);
