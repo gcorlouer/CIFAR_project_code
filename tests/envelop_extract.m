@@ -15,6 +15,7 @@ if ~exist('seed', 'var'), seed  = 0; end % random seed (0 for unseeded)
 %if ~exist('plotm','var'), plotm = 0; end % plot mode (figure number offset, or Gnuplot terminal string)
 %% Simulate data
 connect_matrix=cmatrix(tsdim) %causal ground truth
+iir=1;
 [tsdata,var_coef_ts,corr_res_ts]=var_sim(connect_matrix, varmorder, specrad, nobs);
 %% Filter data 
 [fs,fcut_low,fcut_high,filt_order, fir]=deal(500,80,100,128,0);

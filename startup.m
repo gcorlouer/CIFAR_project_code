@@ -17,6 +17,7 @@ addpath(fullfile(CIFAR_root,'tests'));
 addpath(fullfile(CIFAR_root,'data'));
 addpath(fullfile(CIFAR_root,'deprecated'));
 addpath(fullfile(CIFAR_root,'preproc'));
+addpath(fullfile(CIFAR_root,'HFB_envelope'));
 addpath(genpath(fullfile(CIFAR_root,'fsbrains')));
 fprintf('[CIFAR startup] Added path %s and appropriate subpaths\n',CIFAR_root);
 
