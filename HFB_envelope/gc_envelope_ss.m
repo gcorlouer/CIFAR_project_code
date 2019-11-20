@@ -1,11 +1,6 @@
-%% Enveloppe exctraction tests
+%% Model envelope with state space model
 %% TODO: 
-%-Test score for GC comparison
-%-Sliding windows utilities
-%-Extract other frequencies and look GC between different HFB
-%-create a function that output GC plots
-%add title to plots
-% TO save figure check you have the right pwd (use cd otherwise)
+
 %% Data input
 tsdim=6;
 varmorder = 4;
@@ -13,14 +8,14 @@ nobs = 30000;
 specrad = 0.98;
 connect_matrix=cmatrix(tsdim);
 fres=1024;
-if ~exist('seed', 'var'), seed  = 0; end % random seed (0 for unseeded)
-%if ~exist('plotm','var'), plotm = 0; end % plot mode (figure number offset, or Gnuplot terminal string)
+if ~exist('seed',   'var'), seed     = 0;    end % random seed (0 for unseeded)
+if ~exist('svconly','var'), svconly  = true; end % only compute SVC for SS model order selection (faster)
+if ~exist('plotm',  'var'), plotm    = 0;    end % plot mode (figure number offset, or Gnuplot terminal string)
 %% Simulate data
 [tsdata,var_coef_ts,corr_res_ts]=var_sim(connect_matrix, varmorder, specrad, nobs);
 %% Filter data 
-iir=1;
-[fs,fcut_low,fcut_high,filt_order, fir]=deal(500,90,110,128,0);
-tsdata_filtered=tsdata2ts_filtered(tsdata,fs,fcut_low,fcut_high,filt_order, iir);
+[fs,fcut_low,fcut_high,filt_order, fir]=deal(500,90,110,128,1);
+tsdata_filtered=tsdata2ts_filtered(tsdata,fs,fcut_low,fcut_high,filt_order, fir);
 %% Envelope extraction
 envelope = tsdata2envelope(tsdata_filtered);
 %% Plot envelope
@@ -35,8 +30,6 @@ moregmode = 'LWR';   % VAR model estimation regression mode ('OLS' or 'LWR')
 mosel     = 'LRT';   % model order selection ('ACT', 'AIC', 'BIC', 'HQC', 'LRT', or supplied numerical value)
 momax     = 50;      % maximum model order for model order selection
 moact=varmorder;
-% VAR model parameter estimation
-regmode   = 'OLS';   % VAR model estimation regression mode ('OLS' or 'LWR')
 
 %Calculate and plot VAR model order estimation criteria up to specified maximum model order.
 
@@ -49,70 +42,79 @@ ptoc;
 
 %env_morder = input('morder = ')
 env_morder = moselect(sprintf('VAR model order selection (max = %d)',momax), mosel,'ACT',moact,'AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
-% assert(morder > 0,'selected zero model order! GCs will all be zero!');
-% if morder >= momax, fprintf(2,'*** WARNING: selected maximum model order (may have been set too low)\n'); end
-%% VAR model estimation (<mvgc_schema.html#3 |A2|>)
-% Estimate VAR model of selected order from data.
+assert(env_morder > 0,'selected zero model order! GCs will all be zero!');
+if env_morder >= momax, fprintf(2,'*** WARNING: selected maximum model order (may have been set too low)\n'); end
+%% SS model order estimation of the envelope
+ssmosel_env   = 'SVC';  % SS model order selection ('ACT', 'SVC', 'AIC', 'BIC', 'HQC', 'LRT', or supplied numerical value)
 
-ptic('\n*** tsdata_to_var... ');
-[var_envelope,res_envelope] = tsdata_to_var(envelope,env_morder,regmode);
-ptoc;
+pf_env = 2*env_morder; % Bauer recommends 2 x VAR AIC model order
 
-% Check for failed regression
+if svconly  % SVC only: computationally much faster
 
-assert(~isbad(var_envelope),'VAR estimation failed - bailing out');
-info = var_info(var_envelope,res_envelope);
-assert(~info.error,'VAR error(s) found - bailing out');
-%% GC estimation of envelope
+	ptic('\n*** tsdata_to_sssvc... ');
+	if isnumeric(plotm), plotm = plotm+1; end
+	[ssmosvc_env_env,ssmomax_env] = tsdata_to_sssvc(envelope,pf_env,[],plotm);
+	ptoc;
+
+	% Select and report SS model order.
+
+	ssmo_env = moselect(sprintf('SS model order selection (max = %d)',ssmomax_env),ssmosel_env,'SVC',ssmosvc_env_env);
+
+
+else        % SVC + likelihood-based selection criteria + SVC: computational intensive
+
+	ptic('\n*** tsdata_to_ssmo... ');
+	if isnumeric(plotm), plotm = plotm+1; end
+	[ssmoaic_env,ssmobic_env,ssmohqc_env,ssmosvc_env_env,ssmolrt_env,ssmomax_env] = tsdata_to_ssmo(envelope,pf_env,[],[],plotm);
+	ptoc;
+
+	% Select and report SS model order.
+
+	ssmo_env = moselect(sprintf('SS model order selection (max = %d)',ssmomax_env),ssmosel_env,'ACT',ssmoact,'AIC',ssmoaic_env,'BIC',ssmobic_env,'HQC',ssmohqc_env,'SVC',ssmosvc_env_env,'LRT',ssmolrt_env);
+
+end
+
+assert(ssmo_env > 0,'selected zero model order! GCs will all be zero!');
+if ssmo_env >= ssmomax_env, fprintf(2,'*** WARNING: selected SS maximum model order (may have been set too low)\n'); end
+
+%% SS model estimation of the envelope
+
+% Estimate SS model order and model paramaters
+
+[A_env,C_env,Kalman_gain,Variance] = tsdata_to_ss(envelope,pf_env,ssmo_env);
+
+% Report information on the estimated SS, and check for errors.
+
+info = ss_info(A_env,C_env,Kalman_gain,Variance);
+assert(~info.error,'SS error(s) found - bailing out');
+%% GC estimation of envelope time domain
 % MVGC (time domain) statistical inference
 
 testats    = 'dual';  % test statistic ('single', 'dual' or 'both')
 alpha     = 0.05;    % significance level for Granger casuality significance test
 mhtc      = 'FDR';   % multiple hypothesis test correction (see routine 'significance')
-ptic('*** var_to_pwcgc... ');
 
-%Estimation
+% Estimated time-domain pairwise-conditional Granger causalities
 
-[pwcgc_envelope,stats] = var_to_pwcgc(var_envelope,res_envelope,testats,envelope,regmode);
+ptic('*** ss_to_pwcgc... ');
+pwcgc_envelope = ss_to_pwcgc(A_env,C_env,Kalman_gain,Variance);
 ptoc;
 assert(~isbad(pwcgc_envelope,false),'GC estimation failed');
 
-% Significance test (F- and likelihood ratio), adjusting for multiple hypotheses.
+% NOTE: we don't have an analytic (asymptotic) distribution for the statistic, so no significance testing here!
 
-sigF  = significance(stats.(testats).F.pval, alpha,mhtc);
-sigLR = significance(stats.(testats).LR.pval,alpha,mhtc);
+% For comparison, we also calculate the actual pairwise-conditional causalities
 
-% Calculate the actual pairwise-conditional causalities of data
-
-ptic('*** var_to_pwcgc... ');
-pwcgc_tsdata = var_to_pwcgc(var_coef_ts,corr_res_ts);
+ptic('*** ss_to_pwcgc... ');
+FF = ss_to_pwcgc(AA,CC,KK,VV);
 ptoc;
-% assert(~isbad(FF,false),'GC calculation failed');
+assert(~isbad(FF,false),'GC calculation failed');
 
-% Plot time-domain causal graph, p-values and significance.
+% Plot time-domain causal graph
 
-maxpwcgc = 1.1*max(nanmax(pwcgc_envelope(:),nanmax(pwcgc_tsdata(:))));
-pdata = {pwcgc_tsdata,pwcgc_envelope;sigF,sigLR};
-ptitle = {'PWCGC (tsdata)','PWCGC (HF envelope)'; sprintf('F-test (%s-regression)',testats),sprintf('LR test (%s-regression)',testats)};
-maxp = [maxpwcgc maxpwcgc;1 1];%???? 
-%if isnumeric(plotm), plotm = plotm+1; end
-plot_gc(pdata,ptitle,[],[],[]);
-%% Spectral analysis
-fs = 500;
-[cpsd_tsdata,f,fres] = tsdata_to_cpsd(tsdata,false,fs,[],[],fres,true,false);
-apsd_tsdata_figure_path=[pwd,'\figures\Hilbert_envelope\'];
-apsd_tsdata_fname=['auto_cpsd_tsdata',num2str(varmorder),'_','tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
-apsd_tsdata_fpath=[apsd_tsdata_figure_path,apsd_tsdata_fname];
-figure
-plot_autocpsd(cpsd_tsdata,f,fs,tsdim);
-saveas(gcf,apsd_tsdata_fpath);
-[cpsd_envelope,f,fres] = tsdata_to_cpsd(envelope,false,fs,[],[],fres,true,false);
-apsd_envelope_figure_path=[pwd,'\figures\Hilbert_envelope\'];
-apsd_envelope_fname=['auto_cpsd_envelope',num2str(env_morder),'_','tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
-apsd_envelope_fpath=[apsd_envelope_figure_path,apsd_envelope_fname];
-figure
-plot_autocpsd(cpsd_envelope,f,fs,tsdim);
-saveas(gcf,apsd_envelope_fpath);
+maxF = 1.1*max(nanmax(pwcgc_envelope(:),nanmax(FF(:))));
+if isnumeric(plotm), plotm = plotm+1; end
+plot_gc({FF,pwcgc_envelope},{'PWCGC (actual)','PWCGC (estimated)'},[],[maxF maxF],plotm);
 %% Spectral GC
 % Calculate spectral pairwise-conditional causalities resolution from VAR model
 % parameters. If not specified, we set the frequency resolution to something
@@ -160,16 +162,3 @@ sgc_figure_path=[pwd,'\figures\Hilbert_envelope\'];
 sgc_fname=['sgc_',num2str(fcut_low),'-',num2str(fcut_high),'Hz_','env_morder',num2str(env_morder),'_','morder',num2str(varmorder),'_','tsdim', num2str(tsdim),'_','specrad',num2str(specrad),'.png'];
 sgc_fpath=[sgc_figure_path,sgc_fname];
 saveas(gcf,sgc_fpath);
-
-% %% Plot finer spectral graph
-% k=0;
-% figure
-% for i=1:tsdim
-%     for j=1:tsdim
-%         k=k+1;
-%         subplot(2*tsdim,tsdim,k)
-%         plot(freqs, squeeze(spwcgc_envelope(i,j,:)))
-%         subplot(2*tsdim,tsdim,k+1)
-%         plot(freqs, squeeze(spwcgc_tsdata(i,j,:)))
-%     end
-% end

@@ -20,7 +20,7 @@ rmi       = 0.5;    % residuals log-generalised correlation (multi-information)
 
 % VAR model order estimation
 
-varmosel  = 'AIC';  % VAR model order selection ('ACT', 'AIC', 'BIC', 'HQC', 'LRT', or supplied numerical value)
+varmosel  = 'LRT';  % VAR model order selection ('ACT', 'AIC', 'BIC', 'HQC', 'LRT', or supplied numerical value)
 varmomax  = nvars*ssmoact; % maximum model order for VAR model order selection
 
 % SS model order estimation
