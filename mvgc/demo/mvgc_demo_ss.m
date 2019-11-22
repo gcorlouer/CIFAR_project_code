@@ -41,7 +41,7 @@ if ~exist('plotm',  'var'), plotm    = 0;    end % plot mode (figure number offs
 
 % Seed random number generator.
 
-rng_seed(seed);
+rng_seed(seed); 
 
 % Generate random SS parameters in innovations form
 

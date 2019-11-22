@@ -30,7 +30,7 @@ moact=varmorder;
 
 ptic('\n*** tsdata_to_varmo... ');
 %if isnumeric(plotm), plotm = plotm+1; end
-[moaic,mobic,mohqc,molrt] = tsdata_to_varmo(envelope,momax,moregmode,[],[],[]);
+[moaic,mobic,mohqc,molrt] = tsdata_to_varmo(emvelope,momax,moregmode,[],[],[]);
 ptoc;
 
 % Select and report VAR model order.

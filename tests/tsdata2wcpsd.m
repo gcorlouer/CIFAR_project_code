@@ -2,37 +2,47 @@
 %% Parameters
 %wavelet: wavelet type, 'Morse' (default) | 'amor' | 'bump'
 %fs : sampling rate
-%
+%mwcoh : multivariate wavelet coherence
+%wcpsd : multivariate wavelet cross powerd specrtum
+%awcoh : autocoherence
+%awcpsd : autospectra
+%twindow: time window. WARNING: may run out of memory if time window is too
+%long
 %% TODO
-%Try limited time and frequency window becaus of memory problem
+% Need to review autospectra
 %% 
-function [wcoh,wcpsd,freq] = tsdata2wcpsd(tsdata,fs,wavelet)
+function [mwcoh,mwcpsd,awcoh,awcpsd,freq] = tsdata2wcpsd(tsdata,fs,twindow)
+
 [tsdim, nobs,ntrials] = size(tsdata);
-[bi_wcoh,bi_wcs,freq] = wcoherence(tsdata(1,:),tsdata(2,:),fs); %get the number of frequencies
-%Create filter bank to change wavelet
-fb=cwtfilterbank('SignalLength',nobs,'Wavelet',wavelet,'SamplingFrequency',fs);
-[wts_fb,freq]=wt(fb,tsdata(1,:)); %get number of frequencies
+[bi_wcoh,bi_wcs,freq] = wcoherence(tsdata(1,twindow),tsdata(2,twindow),fs); %get the number of frequencies
 
-wcoh = zeros(tsdim,tsdim,size(freq,1),nobs);
-wcpsd = zeros(tsdim,tsdim,size(freq,1),nobs);
-wts_fb=zeros(tsdim,size(freq,1),nobs);
-
-%wavelet transform time series
-for i=1:tsdim
-    [wts_fb(i,:,:),freq]=wt(fb,tsdata(i,:));
+%initialise
+if size(twindow,2)>size(twindow,1)
+    window_size=size(twindow,2);
+else
+    window_size=size(twindow,1);
 end
 
-%Wavelet cross spectrum
+mwcoh = zeros(tsdim,tsdim,size(freq,1),window_size);
+mwcpsd = zeros(tsdim,tsdim,size(freq,1),window_size);
+
+%Wavelet cross coherence and cross spectral power
+
 for i=1:tsdim
-     for j=1:tsdim
-wcpsd(i,j,:,:)=wts_fb(i,:,:).*conj(wts_fb(j,:,:));
-     end 
+    for j=1:tsdim
+        [mwcoh(i,j,:,:), mwcpsd(i,j,:,:)]=wcoherence(tsdata(i,twindow),tsdata(j,twindow),fs);
+    end
 end
 
-% Wavelet 
-% 
-% for i=1:tsdim
-%     for j=1:tsdim
-%         [wcoh(i,j,:,:), wcpsd(i,j,:,:)]=wcoherence(tsdata(i,:),tsdata(j,:));
-%     end
-% end
+%Auto spectra
+
+awcoh = zeros(1,tsdim,size(freq,1),window_size);
+awcpsd = zeros(1,tsdim,size(freq,1),window_size);
+
+for i=1:tsdim
+    awcpsd(1,i,:,:) = mwcpsd(i,i,:,:);
+    awcoh(1,i,:,:) = mwcoh(i,i,:,:);
+end
+
+awcoh = squeeze(awcoh);
+awcpsd = squeeze(awcpsd);
