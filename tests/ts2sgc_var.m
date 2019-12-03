@@ -1,9 +1,8 @@
-% testats    = 'dual';  % test statistic ('single', 'dual' or 'both')
-% alpha     = 0.05;    % significance level for Granger casuality significance test
-% mhtc      = 'FDR';   % multiple hypothesis test correction (see routine 'significance')
-function tgc_var=ts2gc_var(tsdata,moregmode,mosel,regmode,testats, alpa, mhtc, plotm)
+function [sgc_var,freqs]=ts2sgc_var(tsdata,moregmode,mosel,regmode,fres, fs, plotm)
+%% TODO
+%%
 %Calculate and plot VAR model order estimation criteria up to specified maximum model order.
-
+momax=50;
 ptic('\n*** tsdata_to_varmo... ');
 %if isnumeric(plotm), plotm = plotm+1; end
 [moaic,mobic,mohqc,molrt] = tsdata_to_varmo(tsdata,momax,moregmode,[],[],plotm,[]);
@@ -26,23 +25,21 @@ ptoc;
 assert(~isbad(var_coef),'VAR estimation failed - bailing out');
 info = var_info(var_coef,corr_res);
 assert(~info.error,'VAR error(s) found - bailing out');
+%% Granger causality estimation: frequency domain  (<mvgc_schema.html#3 |A14|>)
+if isempty(fres)
+    fres = 2^nextpow2(max(info.acdec,infoo.acdec)); % alternatively, fres = 2^nextpow2(nobs);
+	fprintf('\nUsing frequency resolution %d\n',fres);
+end
+if fres > 10000 % adjust to taste
+	fprintf(2,'\nWARNING: large frequency resolution = %d - may cause computation time/memory usage problems\nAre you sure you wish to continue [y/n]? ',fres);
+	istr = input(' ','s'); if isempty(istr) || ~strcmpi(istr,'y'); fprintf(2,'Aborting...\n'); return; end
+end
 
-%% MVGC (time domain) statistical inference
-
-%Estimation
-
-[pwcgc,stats] = var_to_pwcgc(var_coef,corr_res,testats,tsdata,regmode);
+ptic(sprintf('\n*** var_to_spwcgc (at frequency resolution = %d)... ',fres));
+sgc_var = var_to_spwcgc(var_coef,corr_res,fres);
 ptoc;
-assert(~isbad(pwcgc,false),'GC estimation failed');
+assert(~isbad(sgc_var,false),'spectral GC estimation failed');
 
-% Significance test (F- and likelihood ratio), adjusting for multiple hypotheses.
+% Get frequency vector according to the sampling rate.
 
-sigF  = significance(stats.(testats).F.pval, alpha,mhtc);
-sigLR = significance(stats.(testats).LR.pval,alpha,mhtc);
-
-% Calculate the actual pairwise-conditional causalities of data
-
-ptic('*** var_to_pwcgc... ');
-pwcgc_tsdata = var_to_pwcgc(var_coef_ts,corr_res_ts);
-ptoc;
-% assert(~isbad(FF,false),'GC calculation failed');
+freqs = sfreqs(fres,fs);

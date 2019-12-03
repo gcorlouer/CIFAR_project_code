@@ -7,7 +7,7 @@
 %add title to plots
 % TO save figure check you have the right pwd (use cd otherwise)
 %% Data input
-tsdim=6;
+tsdim=4;
 varmorder = 4;
 nobs = 30000;
 specrad = 0.98;
