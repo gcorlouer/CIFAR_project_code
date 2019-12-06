@@ -1,7 +1,7 @@
 % testats    = 'dual';  % test statistic ('single', 'dual' or 'both')
 % alpha     = 0.05;    % significance level for Granger casuality significance test
 % mhtc      = 'FDR';   % multiple hypothesis test correction (see routine 'significance')
-function tgc_var=ts2gc_var(tsdata,moregmode,mosel,regmode,testats, alpha, mhtc, plotm)
+function [tgc_var,stats]=ts2tgc_var(tsdata,moregmode,mosel,regmode,testats, alpha, mhtc, plotm)
 %Calculate and plot VAR model order estimation criteria up to specified maximum model order.
 momax=50;
 ptic('\n*** tsdata_to_varmo... ');

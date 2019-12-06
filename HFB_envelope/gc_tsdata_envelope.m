@@ -7,9 +7,9 @@
 %add title to plots
 % TO save figure check you have the right pwd (use cd otherwise)
 %% Data input
-tsdim=4;
+tsdim=3;
 varmorder = 4;
-nobs = 30000;
+nobs = 10000;
 specrad = 0.98;
 connect_matrix=cmatrix(tsdim);
 fres=1024;

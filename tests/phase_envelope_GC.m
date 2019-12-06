@@ -5,9 +5,9 @@
 %Temporal and spectral   
 %GC between phase and amplitude  
 %% Data input
-tsdim=6;
+tsdim=3;
 varmorder = 4;
-nobs = 30000;
+nobs = 20000;
 specrad = 0.98;
 connect_matrix=cmatrix(tsdim);
 fres=1024;
