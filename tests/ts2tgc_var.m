@@ -1,7 +1,7 @@
 % testats    = 'dual';  % test statistic ('single', 'dual' or 'both')
 % alpha     = 0.05;    % significance level for Granger casuality significance test
 % mhtc      = 'FDR';   % multiple hypothesis test correction (see routine 'significance')
-function [tgc_var,stats]=ts2tgc_var(tsdata,moregmode,mosel,regmode,testats, alpha, mhtc, plotm)
+function [tgc_var,sigF,sigLR]=ts2tgc_var(tsdata,moregmode,mosel,regmode,testats, alpha, mhtc, plotm)
 %Calculate and plot VAR model order estimation criteria up to specified maximum model order.
 momax=50;
 ptic('\n*** tsdata_to_varmo... ');
@@ -12,7 +12,7 @@ ptoc;
 
 %morder = input('morder = ')
 morder = moselect(sprintf('VAR model order selection (max = %d)',momax), mosel,'AIC',moaic,'BIC',mobic,'HQC',mohqc,'LRT',molrt);
-assert(morder > 0,'selected zero model order! GCs will all be zero!');
+assert(morder > 0,'selected zero model order! G Cs will all be zero!');
 if morder >= momax, fprintf(2,'*** WARNING: selected maximum model order (may have been set too low)\n'); end
 %% VAR model estimation (<mvgc_schema.html#3 |A2|>)
 % Estimate VAR model of selected order from data.
