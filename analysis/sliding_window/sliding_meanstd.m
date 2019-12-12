@@ -40,7 +40,7 @@ end
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
 
 	yyaxis left
 	plot(tsw,mmean);

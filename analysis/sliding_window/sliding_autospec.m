@@ -45,7 +45,7 @@ end
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1760,1024]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1760,1024]);  % create, set size (pixels) and center figure window
 
 	fq   = fs/2;       % Nyqvist frequency
 	ttix = round(ts(1):ttinc:ts(end)); % time ticks (secs)

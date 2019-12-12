@@ -31,7 +31,7 @@ S = 20*log10(S); % measure power as log-mean across channels (dB)
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
 
 	plot(f,S);
 

@@ -16,7 +16,7 @@ if ~exist('figsave',   'var'), figsave   = false; end % save .fig file(s)?
 
 if exist('test','var'), BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed'; ppdir = test; end
 
-[chans,chanstr,channames] = select_channels(BP,subject,dataset,schans,badchans,1);
+[chans,chanstr,channames] = select_channels(BP,subject,dataset,schans,badchans,verb);
 
 [X,ts,fs] = load_EEG(BP,subject,dataset,ppdir,chans,tseg,ds,bigfile,verb);
 
@@ -26,7 +26,7 @@ if nrm > 0,	if nrm > 1, X = demean(X,true); else, X = demean(X,false); end; end
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
 
 	plot(ts',X');
 

@@ -48,7 +48,7 @@ mnsr = mean(nsr)';
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1280 960]); % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 960]); % create, set size (pixels) and center figure window
 
 	subplot(2,1,1);
 	plot(tsw,nsr);

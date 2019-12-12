@@ -35,7 +35,7 @@ fprintf(  'new std. dev., skew, excess kurtosis :% 7.4f  % 7.4f  % 7.4f\n\n',new
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
 
 	plot(ts',[X;Y;Z]');
 	xlabel('time (secs)');
