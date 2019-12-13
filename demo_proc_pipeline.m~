@@ -28,4 +28,5 @@ for w = 1:nwin
 	o = (w-1)*nsobs;      % window offset
 	W = X(:,o+1:o+nwobs); % the window
     %   *** do something with window W ***
+
 end

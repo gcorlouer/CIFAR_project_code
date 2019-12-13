@@ -16,19 +16,18 @@ if ~exist('plotm',  'var'), plotm    = 0;    end % plot mode (figure number offs
 %% Estimate wcpsd
 fs=500;
 pad0=1;
-freq=1:0.1:80;
+freq=1:0.1:fs/2;
 omega0=6;
 nchans=size(tsdata,1);
 nobs=size(tsdata,2);
-for i=1:nchans
-    ts(:,1,i)=tsdata(i,:);
-end 
-X=ts;
-ts_wind=ts(5000:7000,:,:);
+ntrial=1;
+wind=5000:7000;
+ts_wind=zeros(tsdim,length(wind),ntrial);
+ts_wind(:,:,1)=tsdata(:,wind);
 [S, COH, iCOH] = xwt_cmorl_nv(ts_wind,fs,freq,pad0,omega0);
 chan=1;
 time_sel=10;
 for i=1:tsdim
     cpsd(i,:)=S(i,i,:,time_sel);
 end
-plot_logautocpsd(cpsd,freq,fs,nchans)
+plot_autocpsd(cpsd,freq,fs,nchans)
