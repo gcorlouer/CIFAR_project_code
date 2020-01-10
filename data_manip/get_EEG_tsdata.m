@@ -1,6 +1,6 @@
-function [X,ts,filepath,filename] = get_EEG_tsdata(BP,subject,dataset,ppdir,bigfile)
+function [X,ts,filepath,filename] = get_EEG_tsdata(BP,subject,task,ppdir,bigfile)
 
-[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+[filepath,filename] = CIFAR_filename(BP,subject,task)
 fname = fullfile(filepath,ppdir,[filename '.mat']);
 
 X  = [];

@@ -1,3 +1,4 @@
+%% Upload SUMA mapping of a subject
 function sm = get_SUMA_map(subject)
 
 fprintf('Loading SUMA map file ... ');

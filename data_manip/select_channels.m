@@ -2,13 +2,13 @@
 % Select channels
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [chans,chanstr,channames,ogchans] = select_channels(BP,subject,dataset,schans,badchans,verb)
+function [chans,chanstr,channames,ogchans] = select_channels(BP,subject,task,schans,badchans,verb)
 
 if nargin < 4,                  schans   = [];    end % all channels
 if nargin < 5,                  badchans = [];    end % no bad channels
 if nargin < 6 || isempty(verb), verb     = 2;     end % display info and prompt
 
-EEG = get_EEG_info(BP,subject,dataset);
+EEG = get_EEG_info(BP,subject,task);
 
 nchans = EEG.nbchan;
 

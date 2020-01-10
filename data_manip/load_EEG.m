@@ -18,7 +18,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [X,ts,fs] = load_EEG(BP,subject,dataset,ppdir,chans,tseg,ds,bigfile,verb)
+function [X,ts,fs] = load_EEG(BP,subject,task,ppdir,chans,tseg,ds,bigfile,verb)
 
 if nargin < 5                      chans    = [];    end % all channels
 if nargin < 6                      tseg     = [];    end % whole time series
@@ -26,13 +26,13 @@ if nargin < 7 || isempty(ds),      ds       = 1;     end % no downsample
 if nargin < 8 || isempty(bigfile), bigfile  = false; end % read data into memory
 if nargin < 9 || isempty(verb),    verb     = 1;     end % display info, don't prompt
 
-EEG = get_EEG_info(BP,subject,dataset);
+EEG = get_EEG_info(BP,subject,task);
 
 if bigfile
-	[m,ts] = get_EEG_tsdata(BP,subject,dataset,ppdir,true);
+	[m,ts] = get_EEG_tsdata(BP,subject,task,ppdir,true);
 	[nchans,nobs] = size(m,'X');
 else
-	[X,ts] = get_EEG_tsdata(BP,subject,dataset,ppdir,false);
+	[X,ts] = get_EEG_tsdata(BP,subject,task,ppdir,false);
 	[nchans,nobs] = size(X);
 end
 assert(nchans == EEG.nbchan,'Number of channels doesn''t match EEG header');

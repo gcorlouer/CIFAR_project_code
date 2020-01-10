@@ -1,6 +1,6 @@
-function goodchans = get_goodchans(BP,subject,dataset,badchans)
+function goodchans = get_goodchans(BP,subject,task,badchans)
 
-EEG = get_EEG_info(BP,subject,dataset);
+EEG = get_EEG_info(BP,subject,task);
 
 if isscalar(badchans) && badchans == 0 % bad channels are the unknown channels
 	assert(isfield(EEG,'SUMA'),'No SUMA map for this dataset (have you run ''make_SUMA_channel_maps?)');

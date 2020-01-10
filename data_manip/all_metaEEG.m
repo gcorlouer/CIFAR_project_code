@@ -1,59 +1,58 @@
-%% Select subject
-BP = [false,true];
+%% Obtain relevant metadat in a table for all subjects accross all tasks. 
+%Except for sleep data because it hasn't been configure in a .mat file
+%TODO Obtain metadata bout the sleep data
 path2subject= [pwd,'/CIFAR_data/iEEG_10/subjects'];
-subjects_names=dir(path2subject); 
-%% Select dataset
-%ppdir='preproc_ptrem_o8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1'; %preproc directory
-dataset='freerecall_stimuli_1_preprocessed_BP_montage';
-for i=3:length(subjects_names)
-    [filepath,filename] = CIFAR_filename(BP(2),subjects_names(i).name,dataset);
-    [EEG,filepath,filename] = get_EEG_info(BP(2),subjects_names(i).name,dataset);
-    allEEG(i)=EEG;
-    allEEG(i).subject=i-2
-end
-load(strcat(filepath,filesep,filename)); %load metadata containing SUMA mapping
-%% Reorganise EEG metadata presentation to keep the relevant info
+BP = [0 1];
+subjects_names=dir(path2subject);
+task={'rest_baseline_1','rest_baseline_2','stimuli_1','stimuli_2'};
+baseline=[1 2];
+%% 
 for i=1:(length(subjects_names)-2)
-    all_metadata_EEG_BP(i).subject=allEEG(i+2).subject;
-    all_metadata_EEG_BP(i).nbchan=allEEG(i+2).nbchan;
-    all_metadata_EEG_BP(i).srate=allEEG(i+2).srate;
-    all_metadata_EEG_BP(i).pnts=allEEG(i+2).pnts;
-    all_metadata_EEG_BP(i).SUMA=allEEG(i+2).SUMA;
-    all_metadata_EEG_BP(i).nROI=allEEG(i+2).SUMA.nROIs
-    all_metadata_EEG_BP(i).seconds=all_metadata_EEG_BP(i).pnts/all_metadata_EEG_BP(i).srate
+    if i==8 %Subject 'Kial' missing info 
+        continue
+    end
+    for j=1:2
+        for k=1:4
+            [filepath,filename] = CIFAR_filename(BP(j),subjects_names(i+2).name,task{k});
+            [EEG,filepath,filename] = get_EEG_info(BP(j),subjects_names(i+2).name,task{k});
+            all_EEG_info(i,j,k)=EEG;
+            clear EEG;
+        end
+    end
 end
-%% Get tsdata
-bigfile=0;
-[X,ts,filepath,filename] = get_EEG_tsdata(BP,subject,dataset,ppdir,bigfile);
-%% Select channels
-schans=-5; %negative number is ROI, positive is channel
-badchans=0;
-[chans,chanstr,channames,ogchans] = select_channels(BP,subject,dataset,schans,badchans,[]) %Select unknown chans
-%goodchans = get_goodchans(BP,subject,dataset,badchans); 
 %% Select dataset
 %ppdir='preproc_ptrem_o8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1'; %preproc directory
-dataset='freerecall_stimuli_1_preprocessed';
-for i=1:10
-    if subjects_names(i+2).name=='KiAl'
+for i=1:(length(subjects_names)-2)
+    if i==8 %Subject 'Kial' missing info 
         continue
     end
-    [filepath,filename] = CIFAR_filename(BP(1),subjects_names(i+2).name,dataset);
-    [EEG,filepath,filename] = get_EEG_info(BP(1),subjects_names(i+2).name,dataset);
-    allEEG(i)=EEG;
-    allEEG(i).subject=i
-end
-load(strcat(filepath,filesep,filename)); %load metadata containing SUMA mapping
-%% Reorganise EEG metadata presentation to keep the relevant info
-for i=1:10
-    if i==8
-        continue
+    for j=1:2
+        for k=1:length(task)
+            all_relevant_EEG_info(i,j,k).subject=i;
+            all_relevant_EEG_info(i,j,k).task=task{k};
+            all_relevant_EEG_info(i,j,k).bipolar=BP(j);
+            all_relevant_EEG_info(i,j,k).nbchan=all_EEG_info(i,j,k).nbchan;
+            all_relevant_EEG_info(i,j,k).srate=all_EEG_info(i,j,k).srate;
+            all_relevant_EEG_info(i,j,k).pnts=all_EEG_info(i,j,k).pnts;
+            all_relevant_EEG_info(i,j,k).nROI=all_EEG_info(i,j,k).SUMA.nROIs;
+            all_relevant_EEG_info(i,j,k).seconds=all_relevant_EEG_info(i,j,k).pnts/all_relevant_EEG_info(i,j,k).srate;                
+        end
     end
-    all_metadata_EEG(i).subject=i;
-    all_metadata_EEG(i).nbchan=allEEG(i).nbchan;
-    all_metadata_EEG(i).srate=allEEG(i).srate;
-    all_metadata_EEG(i).pnts=allEEG(i).pnts;
-    all_metadata_EEG(i).SUMA=allEEG(i).SUMA;
-    all_metadata_EEG(i).nROI=allEEG(i).SUMA.nROIs
-    all_metadata_EEG(i).seconds=all_metadata_EEG(i).pnts/all_metadata_EEG(i).srate
 end
-save('all_metadata_EEG.mat','all_metadata_EEG')
+%% Save in mat file
+save('all_EEG_info.mat','all_EEG_info')
+save('all_relevant_EEG_info.mat','all_relevant_EEG_info')
+%% Representative metadata description
+metadata_rest_raw=all_relevant_EEG_info(:,1,1);
+metadata_rest_BP=all_relevant_EEG_info(:,2,1);
+metadata_stimuli_raw=all_relevant_EEG_info(:,1,3);
+save('metadata_rest_raw.mat','metadata_rest_raw')
+save('metadata_rest_BP.mat','metadata_rest_BP')
+save('metadata_stimuli_raw.mat','metadata_stimuli_raw')
+%% 
+T_metadata_rest_raw=struct2table(metadata_rest_raw);
+T_metadata_rest_BP=struct2table(metadata_rest_BP);
+T_metadata_stimuli_raw=struct2table(metadata_stimuli_raw);
+writetable(T_metadata_rest_raw,'metadata_rest_raw.csv');
+writetable(T_metadata_rest_BP,'metadata_rest_BP.csv');
+writetable(T_metadata_stimuli_raw,'metadata_stimuli_raw.csv');

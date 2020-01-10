@@ -36,12 +36,12 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [schans,chanstr,goodchans,channames] = chan_select(BP,subject,dataset,nchans,schans,badchans)
+function [schans,chanstr,goodchans,channames] = chan_select(BP,subject,task,baseline,nchans,schans,badchans)
 
 if nargin < 3, schans   = []; end
 if nargin < 4, badchans = []; end
 
-[EEG,filepath,filename] = get_EEG_info(BP,subject,dataset);
+[EEG,filepath,filename] = get_EEG_info(BP,subject,task,baseline);
 
 goodchans = 1:nchans;
 goodchans(badchans) = [];
