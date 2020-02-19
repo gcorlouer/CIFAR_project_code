@@ -14,7 +14,7 @@
 % loaded into memory (this may be slow; use only for very large datasets or in
 % case of limited memory).
 %
-% For dataset specification, see 'utils/CIFAR_filename.m'.
+% For dataset specification, see 'utils/CIFAR_filename.m'. 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -27,8 +27,8 @@ if nargin < 8 || isempty(bigfile), bigfile  = false; end % read data into memory
 if nargin < 9 || isempty(verb),    verb     = 1;     end % display info, don't prompt
 
 EEG = get_EEG_info(BP,subject,task);
-
-if bigfile
+    
+if bigfile 
 	[m,ts] = get_EEG_tsdata(BP,subject,task,ppdir,true);
 	[nchans,nobs] = size(m,'X');
 else

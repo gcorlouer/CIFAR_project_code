@@ -59,9 +59,9 @@ FV.lh.vertices = SUMAsrf(1).vertices.afniXYZ; % LH
 FV.rh.faces = SUMAsrf(2).faces; % RH = Right Hemisphere
 FV.rh.vertices = SUMAsrf(2).vertices.afniXYZ; % RH
 
-smoothpatch_curvature_double_path=fullfile(ecog_map_root,'plot_brain_example_code','smoothpatch','smoothpatch_curvature_double.c')
-smoothpatch_curvature_inversdistance_path=fullfile(ecog_map_root,'plot_brain_example_code','smoothpatch','smoothpatch_inversedistance_double.c')
-vertex_neighbours_double_path=fullfile(ecog_map_root,'plot_brain_example_code','smoothpatch','vertex_neighbours_double.c')
+smoothpatch_curvature_double_path=fullfile(S_brain.ecog_map_root,'plot_brain_example_code','smoothpatch','smoothpatch_curvature_double.c')
+smoothpatch_curvature_inversdistance_path=fullfile(S_brain.ecog_map_root,'plot_brain_example_code','smoothpatch','smoothpatch_inversedistance_double.c')
+vertex_neighbours_double_path=fullfile(S_brain.ecog_map_root,'plot_brain_example_code','smoothpatch','vertex_neighbours_double.c')
 % Use 3d smoothing when drawing the pial surface: 
 if strcmpi(S_brain.plotsurf,'pial')
     mex smoothpatch_curvature_double_path

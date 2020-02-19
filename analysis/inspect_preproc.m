@@ -12,12 +12,12 @@ if ~exist('figsave',   'var'), figsave   = false; end % save .fig file(s)?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if exist('test','var'), BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed'; ppdir1 = 'nopreproc'; ppdir2 = test; end
+BP = true; subject = 'AnRa'; task = 'rest_baseline_1'; ppdir1 = 'preproc_ptrem_8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1'; ppdir2 = 'nopreproc';
 
-[chan,chanstr] = select_channels(BP,subject,dataset,schan,[],1);
+[chan,chanstr] = select_channels(BP,subject,task,schan,[],1);
 
-[X,tsx,fs] = load_EEG(BP,subject,dataset,ppdir1,chan,tseg,ds,bigfile,1);
-[Y,tsy,fs] = load_EEG(BP,subject,dataset,ppdir2,chan,tseg,ds,bigfile,verb);
+[X,tsx,fs] = load_EEG(BP,subject,task,ppdir1,chan,tseg,ds,bigfile,1);
+[Y,tsy,fs] = load_EEG(BP,subject,task,ppdir2,chan,tseg,ds,bigfile,verb);
 
 % X and/or Y may be truncated, but should have same timestamps up to truncation point
 
@@ -41,7 +41,7 @@ fprintf(  'new std. dev., skew, excess kurtosis : %8.4f  % 8.4f  % 8.4f\n\n',new
 
 
 if ~isempty(fignum)
-	center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
 
 	plot(ts',[X;Y]');
 	xlabel('time (secs)');
@@ -49,7 +49,7 @@ if ~isempty(fignum)
 	xlim([ts(1) ts(end)]);
 	legend({ppdir1,ppdir2},'Interpreter','none');
 
-	[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+	[filepath,filename] = CIFAR_filename(BP,subject,task);
 	title(plot_title(filename,[ppdir1 '/' ppdir2],chanstr,mfilename,fs),'Interpreter','none');
 	save_fig(mfilename,filename,filepath,figsave);
 

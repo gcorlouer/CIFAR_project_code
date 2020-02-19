@@ -2,7 +2,7 @@
 % Map channels to SUMA ROIs, store in EEG struct
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Set 'BP', 'subject'
+% Set 'BP', 'subject'. 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -24,7 +24,7 @@ filepath = CIFAR_filename(BP,subject);
 
 s = dir([filepath filesep '*.set']);
 
-for i = 1:length(s) %electrodes locations are only differents accross subject and BP/raw montage so not clear why you would load all of data set
+for i = 1:length(s) 
 	sdataset = s(i).name;
 	m = strfind(sdataset,'_');
 	j = strfind(sdataset,'_');

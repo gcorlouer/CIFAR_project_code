@@ -1,9 +1,9 @@
-%% Hilbert analysis for CIFAR data
+%% Envelope extraction at a given frequency band
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if ~exist('schans',    'var'), schans    = [];       end % selected channels (empty for all good, negative for ROI number)
-if ~exist('badchans',  'var'), badchans  = [];       end % bad channels (empty for none)
+if ~exist('badchans',  'var'), badchans  = 0;       end % bad channels (empty for none, 0 to get rid of them)
 if ~exist('tseg',      'var'), tseg      = [];       end % start/end times (empty for entire time series)
 if ~exist('ds',        'var'), ds        = 1;        end % downsample factor
 if ~exist('bigfile',   'var'), bigfile   = false;    end % data file too large to read into memory
@@ -17,12 +17,12 @@ if ~exist('fignum',    'var'), fignum    = 1;     end % figure number
 if ~exist('figsave',   'var'), figsave   = false; end % save .fig file(s)?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-BP = 0; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed';  ppdir='preproc_ptrem_o8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1';
+BP = 0; subject = 'AnRa'; task = 'rest_baseline_1';  ppdir='preproc_ptrem_o8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1';
 
 schans=-6;
-[chans,chanstr,channames] = select_channels(BP,subject,dataset,schans,badchans,verb);
+[chans,chanstr,channames] = select_channels(BP,subject,task,schans,badchans,verb);
 
-[tsdata,ts,fs] = load_EEG(BP,subject,dataset,ppdir,chans,tseg,ds,bigfile,verb);
+[tsdata,ts,fs] = load_EEG(BP,subject,task,ppdir,chans,tseg,ds,bigfile,verb);
 
 if nrm > 0,	if nrm > 1, tsdata = demean(tsdata,true); else, tsdata = demean(tsdata,false); end; end
 
@@ -33,6 +33,21 @@ tsdata_filtered=tsdata2ts_filtered(tsdata,fs,fcut_low,fcut_high,filt_order, iir)
 
 envelope = tsdata2envelope(tsdata_filtered);
 
-chanum=1;
-trange=1:5000;
-plot_envelope(tsdata_filtered,envelope,trange, chanum, fs)
+% Plot envelope
+% chanum=1;
+% trange=1:2500;
+% %plot_envelope(tsdata_filtered,envelope,trange, chanum, fs)
+% dt=1/fs; 
+% plot_param = {'Color', [0.6 0.1 0.2],'Linewidth',2}; 
+% plot(trange,tsdata_filtered(chanum,trange))
+% hold on
+% plot(trange, envelope(chanum,trange),plot_param{:})
+% hold off
+% xt = get(gca, 'XTick');                                 
+% set(gca, 'XTick', xt, 'XTickLabel', xt/fs)  
+% xlabel('Time (sec)')
+% ylabel('Potential (mV)')
+% legend('Signal','Envelope')
+% [filepath,filename] = CIFAR_filename(BP,subject,task);
+% title(plot_title(filename,ppdir,chanstr,mfilename,fs),'Interpreter','none');
+% save_fig(mfilename,filename,filepath,figsave);

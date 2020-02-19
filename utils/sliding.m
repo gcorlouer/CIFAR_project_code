@@ -43,8 +43,10 @@
 
 function [X,ts,nwin,nwobs,nsobs,tsw,wind] = sliding(X,ts,fs,wind,tstamp,verb)
 
-if nargin < 5 || isempty(tstamp), tstamp = 'mid'; end % time stamp beginning, mid-point, or end of window
-if nargin < 6 || isempty(verb),   verb   = 0;     end
+if nargin < 3                     fs     = 500;     end
+if nargin < 4                     wind   = [5 0.1]; end 
+if nargin < 5 || isempty(tstamp), tstamp = 'mid';   end % time stamp beginning, mid-point, or end of window
+if nargin < 6 || isempty(verb),   verb   = 0;       end
 
 assert(isvector(wind) && length(wind) == 2,'Sliding window specification must be a 2-vector');
 
@@ -89,7 +91,7 @@ if verb > 0
 	fprintf('slide   : %7d observations  = %8.3f secs\n',nsobs,slen);
 	fprintf('overlap : %7d observations  = %8.3f secs\n',nover,tover);
 	fprintf('-----------------------------------------------\n');
-	if verb > 1, input('RETURN to continue: '); end
+	%if verb > 1, input('RETURN to continue: '); end
 end
 
 assert(nwin > 0,'Bad windows');

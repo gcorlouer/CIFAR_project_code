@@ -2,24 +2,27 @@
 % Calculate intra-ROI multi-information conditional on rest of system, over a sliding window
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if ~exist('schans',    'var'), schans    = [];       end % selected channels (empty for all good, negative for ROI number)
-if ~exist('badchans',  'var'), badchans  = 0;        end % bad channels (empty for none)
-if ~exist('tseg',      'var'), tseg      = [];       end % start/end times (empty for entire time series)
-if ~exist('ds',        'var'), ds        = 1;        end % downsample factor
-if ~exist('bigfile',   'var'), bigfile   = false;    end % data file too large to read into memory
-if ~exist('wind',      'var'), wind      = [5 0.1];  end % window width and slide time (secs)
-if ~exist('tstamp',    'var'), tstamp    = 'mid';    end % window time stamp: 'start', 'mid', or 'end'
-if ~exist('verb',      'var'), verb      = 2;        end % verbosity
-if ~exist('fignum',    'var'), fignum    = 1;        end % figure number
-if ~exist('figsave',   'var'), figsave   = false;    end % save .fig file(s)?
+if ~exist('schans',    'var'), schans         = -6;       end % selected channels (empty for all good, negative for ROI number)
+if ~exist('badchans',  'var'), badchans       = 0;        end % bad channels (empty for none)
+if ~exist('tseg',      'var'), tseg           = [];       end % start/end times (empty for entire time series)
+if ~exist('ds',        'var'), ds             = 1;        end % downsample factor
+if ~exist('bigfile',   'var'), bigfile        = false;    end % data file too large to read into memory
+if ~exist('wind',      'var'), wind           = [5 0.1];  end % window width and slide time (secs)
+if ~exist('tstamp',    'var'), tstamp         = 'mid';    end % window time stamp: 'start', 'mid', or 'end'
+if ~exist('verb',      'var'), verb           = 2;        end % verbosity
+if ~exist('fignum',    'var'), fignum         = 1;        end % figure number
+if ~exist('figsave',   'var'), figsave        = false;    end % save .fig file(s)?
+if ~exist('subject',   'var'), subject        = 'AnRa';                                           end %
+if ~exist('task',   'var'),    task           = 'rest_baseline_1';                                end % 
+if ~exist('BP',        'var'), BP             = 1;                                                end % BP=-1 for simulated data
+if ~exist('ppdir',     'var'), ppdir          = 'preproc_ptrem_8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1'; end %preproc directory
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if exist('test','var'), BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed'; ppdir = test; end
 
-[chans,chanstr,~,ogchans] = select_channels(BP,subject,dataset,schans,badchans,1);
+[chans,chanstr,~,ogchans] = select_channels(BP,subject,task,schans,badchans);
 
-[X,ts,fs] = load_EEG(BP,subject,dataset,ppdir,[chans ogchans],tseg,ds,bigfile,1);
+[X,ts,fs] = load_EEG(BP,subject,task,ppdir,[chans ogchans],tseg,ds,bigfile,1);
 
 xchans = 1:length(chans); % selected channels in X
 
@@ -48,7 +51,7 @@ if ~isempty(fignum)
 	ylabel('mean conditional MII');
 	xlabel('time (secs)');
 
-	[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+	[filepath,filename] = CIFAR_filename(BP,subject,task);
 	title(plot_title(filename,ppdir,chanstr,mfilename,fs,wind),'Interpreter','none');
 	save_fig(mfilename,filename,filepath,figsave);
 

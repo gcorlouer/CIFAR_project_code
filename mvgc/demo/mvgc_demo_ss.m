@@ -116,7 +116,7 @@ end
 assert(ssmo > 0,'selected zero model order! GCs will all be zero!');
 if ssmo >= ssmomax, fprintf(2,'*** WARNING: selected SS maximum model order (may have been set too low)\n'); end
 
-%% SS model estimation
+% SS model estimation
 
 % Estimate SS model order and model paramaters
 

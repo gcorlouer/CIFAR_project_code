@@ -13,11 +13,11 @@ if ~exist('figsave',   'var'), figsave   = false; end % save .fig file(s)?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if exist('test','var'), BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed'; ppdir = test; end
+if exist('test','var'), BP = false; subject = 'AnRa'; task = 'rest_baseline_1'; ppdir = test; end
 
-[chan,chanstr] = select_channels(BP,subject,dataset,schan,[],1);
+[chan,chanstr] = select_channels(BP,subject,task,schan,[],1);
 
-[X,ts,fs] = load_EEG(BP,subject,dataset,ppdir,chan,tseg,ds,bigfile,verb);
+[X,ts,fs] = load_EEG(BP,subject,task,ppdir,chan,tseg,ds,bigfile,verb);
 
 oldstd  = std(     X,[],2);
 oldskew = skewness(X,0, 2);
@@ -43,7 +43,7 @@ if ~isempty(fignum)
 	xlim([ts(1) ts(end)]);
 	legend({'original','detrended',sprintf('trend (order = %d)',pford)},'Location', 'northeastoutside','Interpreter','none');
 
-	[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+	[filepath,filename] = CIFAR_filename(BP,subject,task);
 	title(plot_title(filename,ppdir,chanstr,mfilename,fs),'Interpreter','none');
 	save_fig(mfilename,filename,filepath,figsave);
 

@@ -16,11 +16,11 @@ if ~exist('figsave',   'var'), figsave   = false; end % save .fig file(s)?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if exist('test','var'), BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed'; ppdir = test; end
+if exist('test','var'), BP = false; subject = 'AnRa'; task = 'rest_baseline_1'; ppdir = test; end
 
-[chans,chanstr,channames] = select_channels(BP,subject,dataset,schans,badchans,1);
+[chans,chanstr,channames] = select_channels(BP,subject,task,schans,badchans,1);
 
-[X,ts,fs] = load_EEG(BP,subject,dataset,ppdir,chans,tseg,ds,bigfile,1);
+[X,ts,fs] = load_EEG(BP,subject,task,ppdir,chans,tseg,ds,bigfile,1);
 
 [X,ts,nwin,nwobs,nsobs,tsw,wind] = sliding(X,ts,fs,wind,tstamp,verb);
 
@@ -74,7 +74,7 @@ if ~isempty(fignum)
 		ylabel('mean signal power');
 	end
 
-	[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+	[filepath,filename] = CIFAR_filename(BP,subject,task);
 	sgtitle(plot_title(filename,ppdir,chanstr,mfilename,fs,wind),'Interpreter','none');
 	save_fig(mfilename,filename,filepath,figsave);
 

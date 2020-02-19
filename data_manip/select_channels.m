@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Select channels
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%TODO: code 2 select an array of ROI
 function [chans,chanstr,channames,ogchans] = select_channels(BP,subject,task,schans,badchans,verb)
 
-if nargin < 4,                  schans   = [];    end % all channels
+if nargin < 4,                  schans   = 0 ;    end % all channels
 if nargin < 5,                  badchans = [];    end % no bad channels
-if nargin < 6 || isempty(verb), verb     = 2;     end % display info and prompt
+if nargin < 6 || isempty(verb), verb     = 0;     end % display info and prompt
 
 EEG = get_EEG_info(BP,subject,task);
 
@@ -16,13 +16,13 @@ nchans = EEG.nbchan;
 
 if isscalar(badchans) && badchans == 0 % bad channels are the unknown channels
 	assert(isfield(EEG,'SUMA'),'No SUMA map for this dataset (have you run ''make_SUMA_channel_maps?)');
-	badchans = EEG.SUMA.ROI2chans{EEG.SUMA.nROIs}
+	badchans = EEG.SUMA.ROI2chans{EEG.SUMA.nROIs};
 end
 
 goodchans = 1:nchans;
 goodchans(badchans) = [];
 
-if isempty(schans) % all good channels
+if schans==0 % all good channels
 
 	chans  = goodchans;
 	chanstr = sprintf('all %d (good) channels',length(chans));

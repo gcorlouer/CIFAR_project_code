@@ -4,8 +4,9 @@
 %
 % Specify ECoG data set (BP, subject, dataset), e.g.
 %
-% BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed';
-%
+% BP = true; subject = 'AnRa'; task = 'rest_baseline_1';
+% WARINING: COMPILE IN SUBJECT FOLDER
+%TODO: suppress repetition of preprocessed in file name
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if ~exist('hpfreq',    'var'), hpfreq    = [];       end % high-pass filter frequency (Hz)
@@ -37,7 +38,7 @@ end
 
 % Load unpreprocessed data
 
-[X,ts,fs] = load_EEG(BP,subject,dataset,'nopreproc');
+[X,ts,fs] = load_EEG(BP,subject,task,'nopreproc');
 [nchans,nobs] = size(X);
 
 ppdir = 'preproc';

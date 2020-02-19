@@ -23,7 +23,7 @@ end
 
 if ~isempty(fignum)
 
-	center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
+	%center_fig(fignum,[1280 640]);  % create, set size (pixels) and center figure window
 
 	figure(fignum); clf;
 	plot(tsw,mosvc);
@@ -31,7 +31,7 @@ if ~isempty(fignum)
 	xlim([ts(1) ts(end)]);
 	xlabel('time (secs)');
 
-	[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+	[filepath,filename] = CIFAR_filename(BP,subject,task);
 	title(plot_title(filename,ppdir,chanstr,mfilename,fs,wind),'Interpreter','none');
 	save_fig(mfilename,filename,filepath,figsave);
 

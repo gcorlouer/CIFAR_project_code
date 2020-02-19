@@ -20,11 +20,11 @@ if ~exist('figsave',   'var'), figsave  = false;    end % save .fig file(s)?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if exist('test','var'), BP = false; subject = 'AnRa'; dataset = 'freerecall_rest_baseline_1_preprocessed'; ppdir = test; end
+BP = false; subject = 'AnRa'; task = 'rest_baseline_1'; ppdir = 'preproc_ptrem_o8_w5s0.1_lnrem_60Hz_180Hz_w5s0.1'; 
 
-[chans,chanstr] = select_channels(BP,subject,dataset,schans,badchans,1);
+[chans,chanstr] = select_channels(BP,subject,task,schans,badchans,1);
 
-[X,ts,fs] = load_EEG(BP,subject,dataset,ppdir,chans,tseg,ds,bigfile,1);
+[X,ts,fs] = load_EEG(BP,subject,task,ppdir,chans,tseg,ds,bigfile,1);
 
 if nrm > 0,	if nrm > 1, X = demean(X,true); else, X = demean(X,false); end; end
 
@@ -72,7 +72,7 @@ if ~isempty(fignum)
 	xlabel('frequency (Hz, logscale)');
 	ylabel('mean log-autopower (dB)');
 
-	[filepath,filename] = CIFAR_filename(BP,subject,dataset);
+	[filepath,filename] = CIFAR_filename(BP,subject,task);
 	sgtitle(plot_title(filename,ppdir,chanstr,mfilename,fs,wind),'Interpreter','none');
 	save_fig(mfilename,filename,filepath,figsave);
 

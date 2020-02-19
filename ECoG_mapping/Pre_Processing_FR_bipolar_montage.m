@@ -1,16 +1,16 @@
 % Load Data:
-clear all
-close all
-clc;
-addpath('D:\Itzik_DATA\MATLAB ToolBoxes\eeglab13_4_4b'); eeglab; % Don't change
-rmpath(genpath('D:\Itzik_DATA\MATLAB ToolBoxes\chronux_2_12'));
-addpath('D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts');
-addpath('D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\Ripples_analysis\');
-addpath(genpath('D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\General Functions'));
+% clear all
+% close all
+% clc;
+% addpath('D:\Itzik_DATA\MATLAB ToolBoxes\eeglab13_4_4b'); eeglab; % Don't change
+% rmpath(genpath('D:\Itzik_DATA\MATLAB ToolBoxes\chronux_2_12'));
+% addpath('D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts');
+% addpath('D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\Ripples_analysis\');
+% addpath(genpath('D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\General Functions'));
 
 [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
 
-subjects={'DiAs','AnRi','NaGe','BeFe','LuFl','AnRa','TeBe','JuRo','SoGi','NeLa','KaWa','JuTo','FaWa','ArLa','KiAl','JoGa','ArLa2'};
+subjects={'DiAs','AnRi','BeFe','AnRa','JuRo','SoGi','NeLa','FaWa','ArLa','KiAl'};
 
 for initials = subjects(end)
     initials = cell2mat(initials);
@@ -20,53 +20,53 @@ for initials = subjects(end)
     S_brain.plotsurf = 'pial';
     S_brain.layout = 'compact';
     S_brain.surfacealpha = 1;
-    S_brain.meshdir = 'D:\FreeSurfer\Data\SUMA_meshData\';
+    S_brain.meshdir = cfsubdir;
 
     for run=['1' '2']
         close all;
-        clearvars -except subjects initials run ALLEEG EEG SUMAsrf S_brain
+        %clearvars -except subjects initials run ALLEEG EEG SUMAsrf S_brain
         ALLEEG=[]; EEG=[]; CURRENTSET=1;
         
-        maindir=['D:\ECoG\Free_Recall_RAWDATA\' initials];
-        outdir=['D:\ECoG\Free_Recall_RAWDATA\' initials '\EEGLAB_DATASETS_BP\WholeRun\']; % ADJUST OUTDIR
+        maindir = fullfile(cfsubdir,initials);
+        outdir  = fullfile(CIFAR_root,'BP_montage_trial'); % ADJUST OUTDIR
         mkdir(outdir);
         
         % Load Configuration file; 
-        load(fullfile(maindir,[initials '_configuration_file.mat']));%don't have this file
-        outFileName =[initials '_freerecall_' run '_preprocessed_BP_montage.set'];
+        % load(fullfile(maindir,[initials '_configuration_file.mat']));%don't have this file
+        outFileName =[initials '_freerecall_' run '_preprocessed_raw_BP_montage.set'];
         
-        if iscell(edfFileName.(['run' run])) %edFilename.() ??????????
-            for i=1:numel(edfFileName.(['run' run]))
-                filename=edfFileName.(['run' run]){i};
-                % Load EDF:
-                if strcmpi(filename(end-2:end),'edf')
-                    EEG = pop_biosig(filename,'importevent','off');
-                elseif strcmpi(filename(end-2:end),'set')
-                    [EEG] = pop_loadset('filename', filename);
-                else
-                    disp('Wrong file name...');
-                end
-                [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 0, 'setname', outFileName(1:end-4));
-                eeglab redraw;
-            end
-            EEG = pop_mergeset( ALLEEG, [1:numel(edfFileName.(['run' run]))], 0);
-            EEG = eeg_checkset( EEG );
-            EEG.setname='Merged';
-            [ALLEEG EEG CURRENTSET] = eeg_store(ALLEEG, EEG);
-            eeglab redraw
+%         if iscell(edfFileName.(['run' run])) %edFilename.() ??????????
+%             for i=1:numel(edfFileName.(['run' run]))
+%                 filename=edfFileName.(['run' run]){i};
+%                 % Load EDF:
+%                 if strcmpi(filename(end-2:end),'edf')
+%                     EEG = pop_biosig(filename,'importevent','off');
+%                 elseif strcmpi(filename(end-2:end),'set')
+%                     [EEG] = pop_loadset('filename', filename);
+%                 else
+%                     disp('Wrong file name...');
+%                 end
+%                 [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 0, 'setname', outFileName(1:end-4));
+%                 eeglab redraw;
+%             end
+%             EEG = pop_mergeset( ALLEEG, [1:numel(edfFileName.(['run' run]))], 0);
+%             EEG = eeg_checkset( EEG );
+%             EEG.setname='Merged';
+%             [ALLEEG EEG CURRENTSET] = eeg_store(ALLEEG, EEG);
+%             eeglab redraw
+
+        filename=edfFileName.(['run' run]);
+        % Load EDF:
+        if strcmpi(filename(end-2:end),'edf')
+            EEG = pop_biosig(filename,'importevent','off');
+        elseif strcmpi(filename(end-2:end),'set')
+            [EEG] = pop_loadset('filename', filename);
         else
-            filename=edfFileName.(['run' run]);
-            % Load EDF:
-            if strcmpi(filename(end-2:end),'edf')
-                EEG = pop_biosig(filename,'importevent','off');
-            elseif strcmpi(filename(end-2:end),'set')
-                [EEG] = pop_loadset('filename', filename);
-            else
-                disp('Wrong file name...');
-            end
-            [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 0, 'setname', outFileName(1:end-4));
-            eeglab redraw;
+            disp('Wrong file name...');
         end
+        [ALLEEG, EEG, CURRENTSET] = pop_newset(ALLEEG, EEG, 0, 'setname', outFileName(1:end-4));
+        eeglab redraw;
+
         
         if exist('run_commands','var')
             for k=1:numel(run_commands)
@@ -88,12 +88,12 @@ for initials = subjects(end)
         end
         
         % Anatomical location (native space):
-        elocDir = fullfile(S_brain.meshdir,initials);
+        elocDir = fullfile(S_brain.meshdir,initials,'brain');
         load(fullfile(elocDir,'electrodes.mat'))
         
-        % Define hippocampus channel:        
-        hippocampus_channels;
-        
+%         % Define hippocampus channel:        
+%         hippocampus_channels;
+%         
         % Remove non-channels:
         rm_idx=zeros(EEG.nbchan,1);
         for i=1:EEG.nbchan
@@ -133,13 +133,13 @@ for initials = subjects(end)
 %         textFlag=1;
 %         S_brain=plot_Fs_electrode(initials,H_brain,S_brain,SUMAsrf,elocDir,ch_labels,eColor,[],eSize,textFlag,'gouraud','top');
         
-        % Plot MNI Brain to verify:
-        figure; hold on;
-        mesh='D:\ECoG\Free_Recall_RAWDATA\MNI_brain_mesh\MNI_brain_downsampled.mat';
-        headplot_itzik(EEG.data,fullfile(maindir,[initials '_spline_file_MNIbrain.spl']),[],'meshfile',mesh,'electrodes','on', ...
-            'title',initials,'labels',1,'cbar',0, 'maplimits','absmax','colormap',colormap('Gray')); %NEED helper function !!!!!
-        alpha(0.15)
-        
+%         % Plot MNI Brain to verify:
+%         figure; hold on;
+%         mesh='D:\ECoG\Free_Recall_RAWDATA\MNI_brain_mesh\MNI_brain_downsampled.mat';
+%         headplot_itzik(EEG.data,fullfile(maindir,[initials '_spline_file_MNIbrain.spl']),[],'meshfile',mesh,'electrodes','on', ...
+%             'title',initials,'labels',1,'cbar',0, 'maplimits','absmax','colormap',colormap('Gray')); %NEED helper function !!!!!
+%         alpha(0.15)
+%         
         %==================================================================
         % Load excluded channels list (from the common reference analysis):
         load([maindir '\EEGLAB_DATASETS_RMR\' initials '_excluded_channels_unified.mat']); %not clear what is doing : just keep good channels? But what are criteria to select chans?
@@ -161,57 +161,57 @@ for initials = subjects(end)
                 channelFSlabel(k,1) = currentROI;
                 numOfvoxels(k) = electrodes.aparcaseg.bestLabel.NumOfVoxel(electrodeInd);
             end
-            
+        end
             % Find cortical contacts (optional):
             % cortical_channels = find(multiStrFind(channelFSlabel,'ctx')&~multiStrFind(channelFSlabel,'unknown'));
             
             % Compute EMG indicator: (Schomburg et al, 2014; Watson et al. 2016);
-            forder_BP=330;
-            [EEG_highpass,~,b] = pop_firws(EEG, 'fcutoff', 100, 'ftype', 'highpass', 'wtype', 'hamming', 'forder', forder_BP,  'minphase', 0);% HELPER function !!!!
-            %but ok because we don't want to preprocess
-            X = EEG_highpass.data(good_channels,:);
-            EMG = zeros(size(X,2),1);
-            win = 20; % 40 ms window
-            winstep = 1;
-            parfor i = 1:size(X,2)
-                if i <= (win/2)
-                    r = corrcoef(X(:,1:i+(win/2))','rows','pairwise');
-                elseif i >= size(X,2)-(win/2)
-                    r = corrcoef(X(:,i-(win/2):end)','rows','pairwise');
-                else
-                    r = corrcoef(X(:,i-(win/2):i+(win/2))','rows','pairwise');
-                end
-                r(find(tril(r,0)))=nan;
-                EMG(i) =  nanmean(nanmean(r));
-                if rem((i/size(X,2)*100),10)==0, fprintf('\n %d percent completed \n',i/size(X,2)*100); end
-            end
-            clear EEG_highpass
-            EEG.data(end+1,:) = EMG;
-            EEG.nbchan = size(EEG.data,1);
-            EEG.chanlocs(end+1).labels = 'EMG';
-            [ALLEEG, EEG, CURRENTSET] = eeg_store(ALLEEG, EEG);
-            EEG = eeg_checkset( EEG );
-            aux_channels=union(aux_channels,find(strcmpi({EEG.chanlocs.labels},'EMG')));
-            
+%             forder_BP=330;
+%             [EEG_highpass,~,b] = pop_firws(EEG, 'fcutoff', 100, 'ftype', 'highpass', 'wtype', 'hamming', 'forder', forder_BP,  'minphase', 0);% HELPER function !!!!
+%             %but ok because we don't want to preprocess
+%             X = EEG_highpass.data(good_channels,:);
+%             EMG = zeros(size(X,2),1);
+%             win = 20; % 40 ms window
+%             winstep = 1;
+%             parfor i = 1:size(X,2)
+%                 if i <= (win/2)
+%                     r = corrcoef(X(:,1:i+(win/2))','rows','pairwise');
+%                 elseif i >= size(X,2)-(win/2)
+%                     r = corrcoef(X(:,i-(win/2):end)','rows','pairwise');
+%                 else
+%                     r = corrcoef(X(:,i-(win/2):i+(win/2))','rows','pairwise');
+%                 end
+%                 r(find(tril(r,0)))=nan;
+%                 EMG(i) =  nanmean(nanmean(r));
+%                 if rem((i/size(X,2)*100),10)==0, fprintf('\n %d percent completed \n',i/size(X,2)*100); end
+%             end
+%             clear EEG_highpass
+%             EEG.data(end+1,:) = EMG;
+%             EEG.nbchan = size(EEG.data,1);
+%             EEG.chanlocs(end+1).labels = 'EMG';
+%             [ALLEEG, EEG, CURRENTSET] = eeg_store(ALLEEG, EEG);
+%             EEG = eeg_checkset( EEG );
+%             aux_channels=union(aux_channels,find(strcmpi({EEG.chanlocs.labels},'EMG')));
+%             
             
             % Compute common cortical average after 60Hz removal:
-            notchFreqs=[60 120 180];
-            filterWidth=1.5; % Hz
-            EEG_clean=EEG;
-            for f=notchFreqs
-                % Adjust the filter order manually! (use the EEGLAB menu to calculate the order)
-                [EEG_clean,~,b] = pop_firws(EEG_clean, 'fcutoff', [f-filterWidth f+filterWidth], 'ftype', 'bandstop', 'wtype', 'hamming', 'forder', 1100);
-                figure; freqz(b);
-            end
-            CREF = robustMean(EEG_clean.data(good_channels,:),1,5);
-            clear EEG_clean
-            EEG.data(end+1,:) = CREF;
-            EEG.nbchan = size(EEG.data,1);
-            EEG.chanlocs(end+1).labels = 'CREF';
-            [ALLEEG, EEG, CURRENTSET] = eeg_store(ALLEEG, EEG);
-            EEG = eeg_checkset( EEG );
-            aux_channels=union(aux_channels,find(strcmpi({EEG.chanlocs.labels},'CREF')));
-        end
+%             notchFreqs=[60 120 180];
+%             filterWidth=1.5; % Hz
+%             EEG_clean=EEG;
+%             for f=notchFreqs
+%                 % Adjust the filter order manually! (use the EEGLAB menu to calculate the order)
+%                 [EEG_clean,~,b] = pop_firws(EEG_clean, 'fcutoff', [f-filterWidth f+filterWidth], 'ftype', 'bandstop', 'wtype', 'hamming', 'forder', 1100);
+%                 figure; freqz(b);
+%             end
+%             CREF = robustMean(EEG_clean.data(good_channels,:),1,5);
+%             clear EEG_clean
+%             EEG.data(end+1,:) = CREF;
+%             EEG.nbchan = size(EEG.data,1);
+%             EEG.chanlocs(end+1).labels = 'CREF';
+%             [ALLEEG, EEG, CURRENTSET] = eeg_store(ALLEEG, EEG);
+%             EEG = eeg_checkset( EEG );
+%             aux_channels=union(aux_channels,find(strcmpi({EEG.chanlocs.labels},'CREF')));
+%         end
         
         %% Bipolar montage:
         %==========================================================================
@@ -346,17 +346,17 @@ for initials = subjects(end)
         
         % Resample to 500 Hz:
         EEG = pop_resample(EEG,500);
-        % Remove line noise using the new EEGLAB FIR filter:
-        good_channels=find(strcmpi({EEG.chanlocs.type},'signal'));
-        %figure; spectopo(EEG.data(good_channels,:),0,EEG.srate,'percent',10,'title','Before Removing Line Noise');
-        notchFreqs=[60 120 180];
-        filterWidth=1.5; % Hz
-        EEG_clean=EEG;
-        for f=notchFreqs
-            % Adjust the filter order manually! (use the EEGLAB menu to calculate the order)
-            [EEG_clean,~,b] = pop_firws(EEG_clean, 'fcutoff', [f-filterWidth f+filterWidth], 'ftype', 'bandstop', 'wtype', 'hamming', 'forder', 1100);
-            figure; freqz(b);
-        end        
+%         % Remove line noise using the new EEGLAB FIR filter:
+%         good_channels=find(strcmpi({EEG.chanlocs.type},'signal'));
+%         %figure; spectopo(EEG.data(good_channels,:),0,EEG.srate,'percent',10,'title','Before Removing Line Noise');
+%         notchFreqs=[60 120 180];
+%         filterWidth=1.5; % Hz
+%         EEG_clean=EEG;
+%         for f=notchFreqs
+%             % Adjust the filter order manually! (use the EEGLAB menu to calculate the order)
+%             [EEG_clean,~,b] = pop_firws(EEG_clean, 'fcutoff', [f-filterWidth f+filterWidth], 'ftype', 'bandstop', 'wtype', 'hamming', 'forder', 1100);
+%             figure; freqz(b);
+%         end        
         %figure; spectopo(EEG_clean.data(good_channels,:),0,EEG.srate,'percent',10,'title','After Removing Line Noise');
         
         % Store DATA:

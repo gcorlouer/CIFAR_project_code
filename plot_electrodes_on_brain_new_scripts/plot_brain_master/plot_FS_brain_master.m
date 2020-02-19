@@ -21,9 +21,9 @@ if isempty(subjid); subjid = 'fsaverage'; end
 if ~isfield(S_brain,'layout'); S_brain.layout = 'full'; end
 if ~isfield(S_brain,'plotsurf'); S_brain.plotsurf = 'inflated'; end
 if ~isfield(S_brain,'surfacealpha'); S_brain.surfacealpha=1; end
-if ~isfield(S_brain,'meshdir'); S_brain.meshdir='D:\ECoG\Free_Recall_RAWDATA\SUMA_meshData\'; end
+if ~isfield(S_brain,'meshdir'); S_brain.meshdir='/its/home/gc349/CIFAR_guillaume/CIFAR_data/iEEG_10/subjects/'; end
 
-meshDir=fullfile(S_brain.meshdir,subjid);
+meshDir=fullfile(S_brain.meshdir,subjid,'brain','default_freesrufer_surface');
 switch S_brain.plotsurf
     case 'inflated'
         load(fullfile(meshDir,'SUMAInflatedSrf.mat'))
@@ -46,11 +46,12 @@ end
 % colors. Default shows only the curvature in gray (look  nice on the
 % inflated brain).
 if ismember(S_brain.plotsurf,{'flat', 'inflated'})
-    load(fullfile(S_brain.meshdir,'painted_surfaces','SUMA_ROI_DKTatlas.mat'))
+    load(fullfile(S_brain.meshdir,'SUMA_ROI_DKTatlas.mat'))
     %     load(fullfile(meshDir,'painted_surfaces','SUMA_ROI_eva_intermediate_fusiform.mat'));
     
+    
 else
-    load(fullfile(S_brain.meshdir,'painted_surfaces','SUMA_DKatlas.mat'));
+    load(fullfile(S_brain.meshdir,subjid,'brain','default_freesrufer_surface','SUMA_DKatlas.mat'));
     %load(fullfile(S_brain.meshdir,'painted_surfaces','SUMA_blank.mat'));
     %load(fullfile(meshDir,'painted_surfaces','SUMA_DKatlas.mat'));
 end
@@ -63,13 +64,13 @@ FV.rh.faces = SUMAsrf(2).faces; % RH = Right Hemisphere
 FV.rh.vertices = SUMAsrf(2).vertices.afniXYZ; % RH
 
 % Use 3d smoothing when drawing the pial surface:
-if strcmpi(S_brain.plotsurf,'pial')
-    mex 'D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\General Functions\smoothpatch\smoothpatch_curvature_double.c' -v
-    mex 'D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\General Functions\smoothpatch\smoothpatch_inversedistance_double.c' -v
-    mex 'D:\ECoG\MATLAB scripts\Free_Recall_Analysis_Scripts\General Functions\smoothpatch\vertex_neighbours_double.c' -v
-    FV.lh=smoothpatch(FV.lh,0,5);  % smooth the 3D surface
-    FV.rh=smoothpatch(FV.rh,0,5);  % smooth the 3D surface
-end
+% if strcmpi(S_brain.plotsurf,'pial')
+%     mex '/its/home/gc349/CIFAR_guillaume/code_matlab/plot_electrodes_on_brain_new_scripts/plot_brain_master/smoothpatch/smoothpatch_curvature_double.c' -v
+%     mex '/its/home/gc349/CIFAR_guillaume/code_matlab/plot_electrodes_on_brain_new_scripts/plot_brain_master/smoothpatch/smoothpatch_inversedistance_double.c' -v
+%     mex '/its/home/gc349/CIFAR_guillaume/code_matlab/plot_electrodes_on_brain_new_scripts/plot_brain_master/smoothpatch/vertex_neighbours_double.c' -v
+%     FV.lh=smoothpatch(FV.lh,0,5);  % smooth the 3D surface
+%     FV.rh=smoothpatch(FV.rh,0,5);  % smooth the 3D surface
+% end
 
 if strcmpi(S_brain.layout,'full')
     

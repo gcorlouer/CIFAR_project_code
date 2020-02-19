@@ -40,7 +40,8 @@ if projectedFlag == 0
     end    
 end
 
-set(0, 'CurrentFigure', H); hold on;
+%set(0, 'CurrentFigure', H);
+hold on;
 child_handles=findall(gcf);
 
 ch=[];
@@ -90,20 +91,20 @@ for i=1:numel(ch_labels)
     ch.aparcTag=SUMAprojectedElectrodes.aparcaseg.bestLabel.labels(ch.idx);
     ch.dist2srf=SUMAprojectedElectrodes.distanceInMMToMesh(ch.idx);
     pullingExtent = 5;
-    for h=axesHandle'
-        % Plot 2d circles when using flat brain:
-        if strcmpi(S.plotsurf,'flat')
-            ch.handle=scatter3(h,ch.eCrd(1),ch.eCrd(2),ch.eCrd(3)+0.001,s^2,'o','Markerfacecolor',color,'Markeredgecolor','k','LineWidth',0.5);
-        else
-            %ch.handle=surf(h,double(xx+ch.eCrd(1)'),double(yy+ch.eCrd(2)'),double(zz+ch.eCrd(3)'),'facecolor',color,'edgecolor','none','FaceLighting',shading,'SpecularStrength',0.2); %,'edgeLighting','flat'
-            % alternative: pull electrode toward the camera:
-            pulledCrd=pullElectrodesTowardsTheCamera(ch.eCrd,h,pullingExtent);
-%             ch.handle=scatter3(h,pulledCrd(1),pulledCrd(2),pulledCrd(3),s^2,'o','Markerfacecolor',color,'Markeredgecolor','k','LineWidth',0.5);  %
-            ch.handle=surf(h,double(xx+pulledCrd(1)'),double(yy+pulledCrd(2)'),double(zz+pulledCrd(3)'),'facecolor',color,'edgecolor','none','FaceLighting',shading,'SpecularStrength',0.2); %,'edgeLighting','flat'
-   
-        end
-        if textFlag, set(ch.handle,'buttondownfcn',sprintf('disp(''%s_%s'')',subjid,ch.label)); end
-    end
+%     for h=axesHandle'
+%         % Plot 2d circles when using flat brain:
+%         if strcmpi(S.plotsurf,'flat')
+%             ch.handle=scatter3(h,ch.eCrd(1),ch.eCrd(2),ch.eCrd(3)+0.001,s^2,'o','Markerfacecolor',color,'Markeredgecolor','k','LineWidth',0.5);
+%         else
+%             %ch.handle=surf(h,double(xx+ch.eCrd(1)'),double(yy+ch.eCrd(2)'),double(zz+ch.eCrd(3)'),'facecolor',color,'edgecolor','none','FaceLighting',shading,'SpecularStrength',0.2); %,'edgeLighting','flat'
+%             % alternative: pull electrode toward the camera:
+%             %pulledCrd=pullElectrodesTowardsTheCamera(ch.eCrd,h,pullingExtent);
+% %             ch.handle=scatter3(h,pulledCrd(1),pulledCrd(2),pulledCrd(3),s^2,'o','Markerfacecolor',color,'Markeredgecolor','k','LineWidth',0.5);  %
+%             %ch.handle=surf(h,double(xx+pulledCrd(1)'),double(yy+pulledCrd(2)'),double(zz+pulledCrd(3)'),'facecolor',color,'edgecolor','none','FaceLighting',shading,'SpecularStrength',0.2); %,'edgeLighting','flat'
+%    
+%         end
+%         if textFlag, set(ch.handle,'buttondownfcn',sprintf('disp(''%s_%s'')',subjid,ch.label)); end
+%     end
     
     if isfield(ch,'handle')
         uistack(ch.handle,order)

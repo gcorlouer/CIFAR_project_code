@@ -10,7 +10,7 @@ assert(n1 == n,'Covariance matrix must be square');
 
 rstats = nargin > 2;
 
-if rstats;
+if rstats
 	if nargin < 4 || isempty(N), N = 1; end
 	M = N*m;
     d  = nan(g,1);  % chi^2 df and F df1

@@ -1,4 +1,4 @@
-function [S,f,fres] = tsdata_to_cpsd(X,mtaper,fs,nwin,sparms,fres,autospec,verb)
+ function [S,f,fres] = tsdata_to_cpsd(X,mtaper,fs,nwin,sparms,fres,autospec,verb)
 
 afreq = nargin < 3 || isempty(fs);
 

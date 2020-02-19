@@ -14,7 +14,6 @@ plot(trange,tsdata(chanum,trange))
 hold on
 plot(trange, envelope(chanum,trange),plot_param{:})
 hold off
-title('Envelope extraction')
 xt = get(gca, 'XTick');                                 
 set(gca, 'XTick', xt, 'XTickLabel', xt/fs)  
 xlabel('Time (sec)')
