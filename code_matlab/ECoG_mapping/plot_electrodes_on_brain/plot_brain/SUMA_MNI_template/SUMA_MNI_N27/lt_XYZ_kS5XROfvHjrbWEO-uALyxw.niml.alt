@@ -1,0 +1,364 @@
+<atlas_point_list
+  ni_form="ni_group" >
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Inf-Lat-Vent"
+  VAL="4"
+  OKEY="4"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Inf-Lat-Vent" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="3rd-Ventricle"
+  VAL="11"
+  OKEY="11"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="3rd-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Lateral-Ventricle"
+  VAL="23"
+  OKEY="23"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Lateral-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-vessel"
+  VAL="35"
+  OKEY="35"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-vessel" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebellum-White-Matter"
+  VAL="5"
+  OKEY="5"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebellum-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="4th-Ventricle"
+  VAL="12"
+  OKEY="12"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="4th-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Inf-Lat-Vent"
+  VAL="24"
+  OKEY="24"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Inf-Lat-Vent" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-choroid-plexus"
+  VAL="36"
+  OKEY="36"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-choroid-plexus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebellum-Cortex"
+  VAL="6"
+  OKEY="6"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebellum-Cortex" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Brain-Stem"
+  VAL="13"
+  OKEY="13"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Brain-Stem" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebellum-White-Matter"
+  VAL="25"
+  OKEY="25"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebellum-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="WM-hypointensities"
+  VAL="37"
+  OKEY="37"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="WM-hypointensities" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Thalamus-Proper"
+  VAL="7"
+  OKEY="7"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Thalamus-Proper" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Hippocampus"
+  VAL="14"
+  OKEY="14"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Hippocampus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebellum-Cortex"
+  VAL="26"
+  OKEY="26"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebellum-Cortex" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="non-WM-hypointensities"
+  VAL="38"
+  OKEY="38"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="non-WM-hypointensities" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Caudate"
+  VAL="8"
+  OKEY="8"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Caudate" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Amygdala"
+  VAL="15"
+  OKEY="15"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Amygdala" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Thalamus-Proper"
+  VAL="27"
+  OKEY="27"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Thalamus-Proper" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Optic-Chiasm"
+  VAL="39"
+  OKEY="39"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Optic-Chiasm" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Posterior"
+  VAL="40"
+  OKEY="40"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Posterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Putamen"
+  VAL="9"
+  OKEY="9"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Putamen" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CSF"
+  VAL="16"
+  OKEY="16"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CSF" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Caudate"
+  VAL="28"
+  OKEY="28"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Caudate" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Mid_Posterior"
+  VAL="41"
+  OKEY="41"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Mid_Posterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Accumbens-area"
+  VAL="17"
+  OKEY="17"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Accumbens-area" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Putamen"
+  VAL="29"
+  OKEY="29"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Putamen" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Pallidum"
+  VAL="30"
+  OKEY="30"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Pallidum" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Central"
+  VAL="42"
+  OKEY="42"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Central" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Unknown"
+  VAL="0"
+  OKEY="0"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Unknown" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-VentralDC"
+  VAL="18"
+  OKEY="18"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-VentralDC" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Hippocampus"
+  VAL="31"
+  OKEY="31"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Hippocampus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Mid_Anterior"
+  VAL="43"
+  OKEY="43"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Mid_Anterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebral-White-Matter"
+  VAL="1"
+  OKEY="1"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebral-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-vessel"
+  VAL="19"
+  OKEY="19"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-vessel" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-choroid-plexus"
+  VAL="20"
+  OKEY="20"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-choroid-plexus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Amygdala"
+  VAL="32"
+  OKEY="32"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Amygdala" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Anterior"
+  VAL="44"
+  OKEY="44"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Anterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebral-Cortex"
+  VAL="2"
+  OKEY="2"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebral-Cortex" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebral-White-Matter"
+  VAL="21"
+  OKEY="21"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebral-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Accumbens-area"
+  VAL="33"
+  OKEY="33"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Accumbens-area" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Lateral-Ventricle"
+  VAL="3"
+  OKEY="3"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Lateral-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Pallidum"
+  VAL="10"
+  OKEY="10"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Pallidum" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebral-Cortex"
+  VAL="22"
+  OKEY="22"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebral-Cortex" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-VentralDC"
+  VAL="34"
+  OKEY="34"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-VentralDC" />
+</atlas_point_list>
+

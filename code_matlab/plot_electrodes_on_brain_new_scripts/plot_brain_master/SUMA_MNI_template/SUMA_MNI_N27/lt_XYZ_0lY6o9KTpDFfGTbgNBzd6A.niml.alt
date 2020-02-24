@@ -1,0 +1,1548 @@
+<atlas_point_list
+  ni_form="ni_group" >
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebellum-White-Matter"
+  VAL="4"
+  OKEY="4"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebellum-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Hippocampus"
+  VAL="13"
+  OKEY="13"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Hippocampus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-choroid-plexus"
+  VAL="34"
+  OKEY="34"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-choroid-plexus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_front_inf-Opercular"
+  VAL="55"
+  OKEY="55"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_front_inf-Opercular" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_temp_sup-G_T_transv"
+  VAL="76"
+  OKEY="76"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_temp_sup-G_T_transv" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_front_sup"
+  VAL="97"
+  OKEY="97"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_front_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_oc-temp_lat"
+  VAL="103"
+  OKEY="103"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_oc-temp_lat" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_cingul-Ant"
+  VAL="124"
+  OKEY="124"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_cingul-Ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_parietal_sup"
+  VAL="145"
+  OKEY="145"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_parietal_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_circular_insula_inf"
+  VAL="166"
+  OKEY="166"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_circular_insula_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_precentral-sup-part"
+  VAL="187"
+  OKEY="187"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_precentral-sup-part" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebellum-Cortex"
+  VAL="5"
+  OKEY="5"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebellum-Cortex" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Amygdala"
+  VAL="14"
+  OKEY="14"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Amygdala" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="WM-hypointensities"
+  VAL="35"
+  OKEY="35"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="WM-hypointensities" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_front_inf-Orbital"
+  VAL="56"
+  OKEY="56"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_front_inf-Orbital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_temp_sup-Lateral"
+  VAL="77"
+  OKEY="77"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_temp_sup-Lateral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_interm_prim-Jensen"
+  VAL="98"
+  OKEY="98"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_interm_prim-Jensen" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_oc-temp_med_and_Lingual"
+  VAL="104"
+  OKEY="104"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_oc-temp_med_and_Lingual" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_cingul-Mid-Ant"
+  VAL="125"
+  OKEY="125"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_cingul-Mid-Ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_postcentral"
+  VAL="146"
+  OKEY="146"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_postcentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_circular_insula_sup"
+  VAL="167"
+  OKEY="167"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_circular_insula_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_suborbital"
+  VAL="188"
+  OKEY="188"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_suborbital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Thalamus-Proper"
+  VAL="6"
+  OKEY="6"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Thalamus-Proper" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CSF"
+  VAL="15"
+  OKEY="15"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CSF" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="non-WM-hypointensities"
+  VAL="36"
+  OKEY="36"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="non-WM-hypointensities" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_front_inf-Triangul"
+  VAL="57"
+  OKEY="57"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_front_inf-Triangul" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_temp_sup-Plan_polar"
+  VAL="78"
+  OKEY="78"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_temp_sup-Plan_polar" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_intrapariet_and_P_trans"
+  VAL="99"
+  OKEY="99"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_intrapariet_and_P_trans" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_orbital_lateral"
+  VAL="105"
+  OKEY="105"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_orbital_lateral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_cingul-Mid-Post"
+  VAL="126"
+  OKEY="126"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_cingul-Mid-Post" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_precentral"
+  VAL="147"
+  OKEY="147"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_precentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_collat_transv_ant"
+  VAL="168"
+  OKEY="168"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_collat_transv_ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_subparietal"
+  VAL="189"
+  OKEY="189"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_subparietal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Caudate"
+  VAL="7"
+  OKEY="7"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Caudate" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Accumbens-area"
+  VAL="16"
+  OKEY="16"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Accumbens-area" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Optic-Chiasm"
+  VAL="37"
+  OKEY="37"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Optic-Chiasm" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_front_middle"
+  VAL="58"
+  OKEY="58"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_front_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_temp_sup-Plan_tempo"
+  VAL="79"
+  OKEY="79"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_temp_sup-Plan_tempo" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_orbital_med-olfact"
+  VAL="106"
+  OKEY="106"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_orbital_med-olfact" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_cingul-Post-dorsal"
+  VAL="127"
+  OKEY="127"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_cingul-Post-dorsal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_precuneus"
+  VAL="148"
+  OKEY="148"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_precuneus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_collat_transv_post"
+  VAL="169"
+  OKEY="169"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_collat_transv_post" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_temporal_inf"
+  VAL="190"
+  OKEY="190"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_temporal_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Putamen"
+  VAL="8"
+  OKEY="8"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Putamen" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-VentralDC"
+  VAL="17"
+  OKEY="17"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-VentralDC" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Posterior"
+  VAL="38"
+  OKEY="38"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Posterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_front_sup"
+  VAL="59"
+  OKEY="59"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_front_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_temporal_inf"
+  VAL="80"
+  OKEY="80"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_temporal_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_orbital-H_Shaped"
+  VAL="107"
+  OKEY="107"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_orbital-H_Shaped" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_cingul-Post-ventral"
+  VAL="128"
+  OKEY="128"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_cingul-Post-ventral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_rectus"
+  VAL="149"
+  OKEY="149"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_rectus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_front_inf"
+  VAL="170"
+  OKEY="170"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_front_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_temporal_sup"
+  VAL="191"
+  OKEY="191"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_temporal_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Pallidum"
+  VAL="9"
+  OKEY="9"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Pallidum" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-vessel"
+  VAL="18"
+  OKEY="18"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-vessel" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Mid_Posterior"
+  VAL="39"
+  OKEY="39"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Mid_Posterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_Ins_lg_and_S_cent_ins"
+  VAL="60"
+  OKEY="60"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_Ins_lg_and_S_cent_ins" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_temporal_middle"
+  VAL="81"
+  OKEY="81"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_temporal_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_parieto_occipital"
+  VAL="108"
+  OKEY="108"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_parieto_occipital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_cuneus"
+  VAL="129"
+  OKEY="129"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_cuneus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_subcallosal"
+  VAL="150"
+  OKEY="150"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_subcallosal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_front_middle"
+  VAL="171"
+  OKEY="171"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_front_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_temporal_transverse"
+  VAL="192"
+  OKEY="192"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_temporal_transverse" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-choroid-plexus"
+  VAL="19"
+  OKEY="19"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-choroid-plexus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Central"
+  VAL="40"
+  OKEY="40"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Central" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_insular_short"
+  VAL="61"
+  OKEY="61"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_insular_short" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_Lat_Fis-ant-Horizont"
+  VAL="82"
+  OKEY="82"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_Lat_Fis-ant-Horizont" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_pericallosal"
+  VAL="109"
+  OKEY="109"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_pericallosal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_front_inf-Opercular"
+  VAL="130"
+  OKEY="130"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_front_inf-Opercular" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_temp_sup-G_T_transv"
+  VAL="151"
+  OKEY="151"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_temp_sup-G_T_transv" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_front_sup"
+  VAL="172"
+  OKEY="172"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_front_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebral-White-Matter"
+  VAL="20"
+  OKEY="20"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebral-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Mid_Anterior"
+  VAL="41"
+  OKEY="41"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Mid_Anterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_occipital_middle"
+  VAL="62"
+  OKEY="62"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_occipital_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_Lat_Fis-ant-Vertical"
+  VAL="83"
+  OKEY="83"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_Lat_Fis-ant-Vertical" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_postcentral"
+  VAL="110"
+  OKEY="110"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_postcentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_front_inf-Orbital"
+  VAL="131"
+  OKEY="131"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_front_inf-Orbital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_temp_sup-Lateral"
+  VAL="152"
+  OKEY="152"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_temp_sup-Lateral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_interm_prim-Jensen"
+  VAL="173"
+  OKEY="173"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_interm_prim-Jensen" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Lateral-Ventricle"
+  VAL="21"
+  OKEY="21"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Lateral-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="CC_Anterior"
+  VAL="42"
+  OKEY="42"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="CC_Anterior" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_occipital_sup"
+  VAL="63"
+  OKEY="63"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_occipital_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_Lat_Fis-post"
+  VAL="84"
+  OKEY="84"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_Lat_Fis-post" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_precentral-inf-part"
+  VAL="111"
+  OKEY="111"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_precentral-inf-part" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_front_inf-Triangul"
+  VAL="132"
+  OKEY="132"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_front_inf-Triangul" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_temp_sup-Plan_polar"
+  VAL="153"
+  OKEY="153"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_temp_sup-Plan_polar" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_intrapariet_and_P_trans"
+  VAL="174"
+  OKEY="174"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_intrapariet_and_P_trans" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Inf-Lat-Vent"
+  VAL="22"
+  OKEY="22"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Inf-Lat-Vent" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_Unknown"
+  VAL="43"
+  OKEY="43"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_Unknown" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_oc-temp_lat-fusifor"
+  VAL="64"
+  OKEY="64"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_oc-temp_lat-fusifor" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_Pole_occipital"
+  VAL="85"
+  OKEY="85"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_Pole_occipital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_precentral-sup-part"
+  VAL="112"
+  OKEY="112"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_precentral-sup-part" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_front_middle"
+  VAL="133"
+  OKEY="133"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_front_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_temp_sup-Plan_tempo"
+  VAL="154"
+  OKEY="154"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_temp_sup-Plan_tempo" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_oc_middle_and_Lunatus"
+  VAL="175"
+  OKEY="175"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_oc_middle_and_Lunatus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebellum-White-Matter"
+  VAL="23"
+  OKEY="23"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebellum-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_frontomargin"
+  VAL="44"
+  OKEY="44"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_frontomargin" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_oc-temp_med-Lingual"
+  VAL="65"
+  OKEY="65"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_oc-temp_med-Lingual" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_Pole_temporal"
+  VAL="86"
+  OKEY="86"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_Pole_temporal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_suborbital"
+  VAL="113"
+  OKEY="113"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_suborbital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_front_sup"
+  VAL="134"
+  OKEY="134"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_front_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_temporal_inf"
+  VAL="155"
+  OKEY="155"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_temporal_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_oc_sup_and_transversal"
+  VAL="176"
+  OKEY="176"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_oc_sup_and_transversal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Cerebellum-Cortex"
+  VAL="24"
+  OKEY="24"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Cerebellum-Cortex" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_occipital_inf"
+  VAL="45"
+  OKEY="45"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_occipital_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_oc-temp_med-Parahip"
+  VAL="66"
+  OKEY="66"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_oc-temp_med-Parahip" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_calcarine"
+  VAL="87"
+  OKEY="87"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_calcarine" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_subparietal"
+  VAL="114"
+  OKEY="114"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_subparietal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_Ins_lg_and_S_cent_ins"
+  VAL="135"
+  OKEY="135"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_Ins_lg_and_S_cent_ins" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_temporal_middle"
+  VAL="156"
+  OKEY="156"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_temporal_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_occipital_ant"
+  VAL="177"
+  OKEY="177"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_occipital_ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Thalamus-Proper"
+  VAL="25"
+  OKEY="25"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Thalamus-Proper" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_paracentral"
+  VAL="46"
+  OKEY="46"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_paracentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_orbital"
+  VAL="67"
+  OKEY="67"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_orbital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_central"
+  VAL="88"
+  OKEY="88"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_central" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_temporal_inf"
+  VAL="115"
+  OKEY="115"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_temporal_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_insular_short"
+  VAL="136"
+  OKEY="136"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_insular_short" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_Lat_Fis-ant-Horizont"
+  VAL="157"
+  OKEY="157"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_Lat_Fis-ant-Horizont" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_oc-temp_lat"
+  VAL="178"
+  OKEY="178"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_oc-temp_lat" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Caudate"
+  VAL="26"
+  OKEY="26"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Caudate" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_subcentral"
+  VAL="47"
+  OKEY="47"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_subcentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_pariet_inf-Angular"
+  VAL="68"
+  OKEY="68"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_pariet_inf-Angular" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_cingul-Marginalis"
+  VAL="89"
+  OKEY="89"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_cingul-Marginalis" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_temporal_sup"
+  VAL="116"
+  OKEY="116"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_temporal_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_occipital_middle"
+  VAL="137"
+  OKEY="137"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_occipital_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_Lat_Fis-ant-Vertical"
+  VAL="158"
+  OKEY="158"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_Lat_Fis-ant-Vertical" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_oc-temp_med_and_Lingual"
+  VAL="179"
+  OKEY="179"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_oc-temp_med_and_Lingual" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Putamen"
+  VAL="27"
+  OKEY="27"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Putamen" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_transv_frontopol"
+  VAL="48"
+  OKEY="48"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_transv_frontopol" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_pariet_inf-Supramar"
+  VAL="69"
+  OKEY="69"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_pariet_inf-Supramar" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_circular_insula_ant"
+  VAL="90"
+  OKEY="90"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_circular_insula_ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_temporal_transverse"
+  VAL="117"
+  OKEY="117"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_temporal_transverse" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_occipital_sup"
+  VAL="138"
+  OKEY="138"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_occipital_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_Lat_Fis-post"
+  VAL="159"
+  OKEY="159"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_Lat_Fis-post" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_orbital_lateral"
+  VAL="180"
+  OKEY="180"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_orbital_lateral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Pallidum"
+  VAL="28"
+  OKEY="28"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Pallidum" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_cingul-Ant"
+  VAL="49"
+  OKEY="49"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_cingul-Ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_parietal_sup"
+  VAL="70"
+  OKEY="70"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_parietal_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_circular_insula_inf"
+  VAL="91"
+  OKEY="91"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_circular_insula_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_Unknown"
+  VAL="118"
+  OKEY="118"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_Unknown" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_oc-temp_lat-fusifor"
+  VAL="139"
+  OKEY="139"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_oc-temp_lat-fusifor" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_Pole_occipital"
+  VAL="160"
+  OKEY="160"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_Pole_occipital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_orbital_med-olfact"
+  VAL="181"
+  OKEY="181"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_orbital_med-olfact" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Hippocampus"
+  VAL="29"
+  OKEY="29"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Hippocampus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_cingul-Mid-Ant"
+  VAL="50"
+  OKEY="50"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_cingul-Mid-Ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_postcentral"
+  VAL="71"
+  OKEY="71"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_postcentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_circular_insula_sup"
+  VAL="92"
+  OKEY="92"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_circular_insula_sup" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_frontomargin"
+  VAL="119"
+  OKEY="119"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_frontomargin" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_oc-temp_med-Lingual"
+  VAL="140"
+  OKEY="140"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_oc-temp_med-Lingual" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_Pole_temporal"
+  VAL="161"
+  OKEY="161"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_Pole_temporal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_orbital-H_Shaped"
+  VAL="182"
+  OKEY="182"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_orbital-H_Shaped" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Unknown"
+  VAL="0"
+  OKEY="0"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Unknown" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Amygdala"
+  VAL="30"
+  OKEY="30"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Amygdala" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_and_S_cingul-Mid-Post"
+  VAL="51"
+  OKEY="51"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_and_S_cingul-Mid-Post" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_precentral"
+  VAL="72"
+  OKEY="72"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_precentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_collat_transv_ant"
+  VAL="93"
+  OKEY="93"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_collat_transv_ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_occipital_inf"
+  VAL="120"
+  OKEY="120"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_occipital_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_oc-temp_med-Parahip"
+  VAL="141"
+  OKEY="141"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_oc-temp_med-Parahip" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_calcarine"
+  VAL="162"
+  OKEY="162"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_calcarine" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_parieto_occipital"
+  VAL="183"
+  OKEY="183"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_parieto_occipital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Cerebral-White-Matter"
+  VAL="1"
+  OKEY="1"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Cerebral-White-Matter" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="3rd-Ventricle"
+  VAL="10"
+  OKEY="10"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="3rd-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-Accumbens-area"
+  VAL="31"
+  OKEY="31"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-Accumbens-area" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_cingul-Post-dorsal"
+  VAL="52"
+  OKEY="52"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_cingul-Post-dorsal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_precuneus"
+  VAL="73"
+  OKEY="73"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_precuneus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_collat_transv_post"
+  VAL="94"
+  OKEY="94"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_collat_transv_post" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_oc_middle_and_Lunatus"
+  VAL="100"
+  OKEY="100"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_oc_middle_and_Lunatus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_paracentral"
+  VAL="121"
+  OKEY="121"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_paracentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_orbital"
+  VAL="142"
+  OKEY="142"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_orbital" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_central"
+  VAL="163"
+  OKEY="163"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_central" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_pericallosal"
+  VAL="184"
+  OKEY="184"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_pericallosal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Lateral-Ventricle"
+  VAL="2"
+  OKEY="2"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Lateral-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="4th-Ventricle"
+  VAL="11"
+  OKEY="11"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="4th-Ventricle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-VentralDC"
+  VAL="32"
+  OKEY="32"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-VentralDC" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_cingul-Post-ventral"
+  VAL="53"
+  OKEY="53"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_cingul-Post-ventral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_rectus"
+  VAL="74"
+  OKEY="74"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_rectus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_front_inf"
+  VAL="95"
+  OKEY="95"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_front_inf" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_oc_sup_and_transversal"
+  VAL="101"
+  OKEY="101"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_oc_sup_and_transversal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_subcentral"
+  VAL="122"
+  OKEY="122"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_subcentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_pariet_inf-Angular"
+  VAL="143"
+  OKEY="143"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_pariet_inf-Angular" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_cingul-Marginalis"
+  VAL="164"
+  OKEY="164"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_cingul-Marginalis" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_postcentral"
+  VAL="185"
+  OKEY="185"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_postcentral" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Left-Inf-Lat-Vent"
+  VAL="3"
+  OKEY="3"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Left-Inf-Lat-Vent" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Brain-Stem"
+  VAL="12"
+  OKEY="12"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Brain-Stem" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="Right-vessel"
+  VAL="33"
+  OKEY="33"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="Right-vessel" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_cuneus"
+  VAL="54"
+  OKEY="54"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_cuneus" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_G_subcallosal"
+  VAL="75"
+  OKEY="75"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_G_subcallosal" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_front_middle"
+  VAL="96"
+  OKEY="96"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_front_middle" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_lh_S_occipital_ant"
+  VAL="102"
+  OKEY="102"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_lh_S_occipital_ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_and_S_transv_frontopol"
+  VAL="123"
+  OKEY="123"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_and_S_transv_frontopol" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_G_pariet_inf-Supramar"
+  VAL="144"
+  OKEY="144"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_G_pariet_inf-Supramar" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_circular_insula_ant"
+  VAL="165"
+  OKEY="165"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_circular_insula_ant" />
+<ATLAS_POINT
+  data_type="atlas_point"
+  STRUCT="ctx_rh_S_precentral-inf-part"
+  VAL="186"
+  OKEY="186"
+  GYoAR="0"
+  COG=" 0.000000 0.000000 0.000000"
+  SB_LABEL="ctx_rh_S_precentral-inf-part" />
+</atlas_point_list>
+
