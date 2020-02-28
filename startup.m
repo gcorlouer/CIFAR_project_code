@@ -47,7 +47,7 @@ cfsubdir   = fullfile(cfdatadir,'iEEG_10','subjects');
 cfmetadata = fullfile(cfdatadir,'metadata','metadata.mat');
 
 %electrode mapping
-global ecog_map_root; 
+global ecog_map_root;
 ecog_map_root = fileparts(mfilename('fullpath')); % return path to this file
 
 %Add all subfolder to the current path

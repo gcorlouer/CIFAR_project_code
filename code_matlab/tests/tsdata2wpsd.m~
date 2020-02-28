@@ -1,8 +1,0 @@
-%% Wavalet cross power specral 
-function [wcoh,wcpsd] = tsdata2wcpsd(tsdata,fs)
-[tsdim, nobs,ntrials] = size(tsdata);
-[bi_wcoh,bi_wcs,freq] = wcoherence(tsdata(1,:),tsdata(2,:),fs); %get the number of frequencies
-wcoh=size()
-for i=1:tsdim
-    for j=1:tsdim
-        [wcoh(i,j,:,:)]

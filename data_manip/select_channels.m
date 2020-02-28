@@ -5,7 +5,7 @@
 function [chans,chanstr,channames,ogchans] = select_channels(BP,subject,task,schans,badchans,verb)
 
 if nargin < 4,                  schans   = 0 ;    end % all channels
-if nargin < 5,                  badchans = [];    end % no bad channels
+if nargin < 5,                  badchans = 0;    end % drop bad channels
 if nargin < 6 || isempty(verb), verb     = 0;     end % display info and prompt
 
 EEG = get_EEG_info(BP,subject,task);

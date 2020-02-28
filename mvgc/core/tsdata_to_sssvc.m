@@ -4,6 +4,8 @@ function [mosvc,r] = tsdata_to_sssvc(X,h,r,plotm)
 % plotm = n       - Matlab plot to figure n (if zero, use next)
 % plotm = string  - Gnuplot terminal (may be empty)
 
+if nargin < 4, plotm  = [];  end
+
 [n,m,N] = size(X);
 
 assert(all(isint(h(:))),'past/future horizon must be a 2-vector or a scalar positive integer');
