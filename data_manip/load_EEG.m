@@ -20,8 +20,8 @@
 
 function [X,ts,fs] = load_EEG(BP,subject,task,ppdir,chans,tseg,ds,bigfile,verb)
 
-if nargin < 5                      chans    = [];    end % all channels
-if nargin < 6                      tseg     = [];    end % whole time series
+if nargin < 5,                      chans    = [];    end % all channels
+if nargin < 6 ,                     tseg     = [];    end % whole time series
 if nargin < 7 || isempty(ds),      ds       = 1;     end % no downsample
 if nargin < 8 || isempty(bigfile), bigfile  = false; end % read data into memory
 if nargin < 9 || isempty(verb),    verb     = 1;     end % display info, don't prompt

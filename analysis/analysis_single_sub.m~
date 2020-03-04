@@ -1,0 +1,24 @@
+% This script is the pipeling for one subject 
+% TODO: computing time for SS modeling. check that good ROIs are picked up
+
+subject = 'AnRa';
+
+%% Import preprocessed data (select ROIs)
+[X, ts, EEG, filepath,filename,chanstr]=import_ecogdata(subject, ... 
+    'tseg', [20 70], 'badchans', 0, 'schans', -6);
+
+%% Anatomical representation
+
+%% Time series visualisation
+pop_eegplot(EEG);
+
+%% Epoching 
+
+outEEG=eeg_regepochs(EEG, 'recurrence', 1, 'limits', [0 5]); 
+X = outEEG.data; 
+
+%% SS modeling 
+
+[SSmodel, moest] = SSmodeling(X, ts);
+
+%% DFC 

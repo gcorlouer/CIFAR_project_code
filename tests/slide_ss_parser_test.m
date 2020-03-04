@@ -26,8 +26,8 @@ addParameter(p, 'fs', defaultFs, @isscalar);
 addParameter(p, 'mosel', defaultMosel, @isscalar); % selected model order: 1 - AIC, 2 - BIC, 3 - HQC, 4 - LRT
 addParameter(p, 'momax', defaultMomax, @isscalar);
 addParameter(p, 'wind', defaultWind, @isvector);
-addParameter(p, 'tstamp', defaultTstamp, @isstring);
-addParameter(p, 'moregmode', defaultMoregmode, @isstring);  
+addParameter(p, 'tstamp', defaultTstamp, @vector);
+addParameter(p, 'moregmode', defaultMoregmode, @vector);  
 
 
 parse(p, X, ts, varargin{:});

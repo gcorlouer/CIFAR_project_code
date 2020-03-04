@@ -36,7 +36,7 @@ for i = 1:length(s)
 	dataset = sdataset(j+1:k-1);
 	try % catch out-of-memory errors, etc.
 		[filepath,filename] = CIFAR_filename(BP,subject,dataset);
-		EEG = pop_loadset('filename',[filename '.set'],'filepath',filepath); %pb sleep data set takes too much memory
+		EEG = pop_loadset('filename',[filename '.set'],'filepath',filepath); % pb sleep data set takes too much memory
 	catch problem
 		fprintf(2,'\n*** DATASET LOAD FAILED (%s) ***\n\n',problem.identifier);
 		continue
