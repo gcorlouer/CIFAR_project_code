@@ -1,36 +1,74 @@
 %% Preprocess single sub
+%
 % TODO : Update EEGlab version https://sccn.ucsd.edu/wiki/How_to_download_EEGLAB
-%        Find out how to do automated cleaning https://github.com/sccn/clean_rawdata/blob/master/pop_clean_rawdata.m
-%        Get rid of bad epochs manually
-%        ICA and see if it helps
-%        Run SS modeling on cleaned data
-%       
-
-subject = 'AnRa';
+%        Find out another how to do automated cleaning https://github.com/sccn/clean_rawdata/blob/master/pop_clean_rawdata.m
+%        Try ICA and see if it helps      
+%        Experiment different polynomial order fit and compare them
+%        Code a function to load unpreproc and preproc data
 %% Import data (EEG structure with SUMA and data)
-[X, ts, EEG, filepath,filename,chanstr]=import_ecogdata(subject, 'ppdir','nopreproc');
+subject = 'AnRa';
+task = 'rest_baseline_1';
 
-%% Visualise time series annotate
+[X, ts, EEG, filepath, filename, chanstr] = import_ecogdata(subject, 'ppdir','nopreproc');
+
+%% Inspect time series 
+
 pop_eegplot(EEG);
-%% ICA ? 
 
 %% Drop bad channels 
-drop_chans = [1, 40:51, 59, 60, 61]; % Hyppocampal and unknown regions
-EEG =  pop_select(EEG, 'nochannel', drop_chans); % Would be interesting to keep track of ROI
-X = EEG.data;
+
+dropChan = [1, 40:50, 59, 60, 61]; % Hyppocampal and unknown regions
+
+[X, EEG] = remove_badChan(EEG, dropChan);
+
+% Data shape for NoiseTool is time*sample*trials
+
+x = permute(X,[2 1]);
+
+%% Robust detrending 
+
+% Run time 30 sec
+order = 10; 
+w = []; 
+basis= 'sinusoids';  % sinusoid seems to work better
+thresh = []; 
+niter = []; 
+wsize = 10*500;
+
+tic
+y = nt_detrend(x,order,w,basis,thresh,niter,wsize);
+toc
+
+%% Robust outliers detection and removal
+% Run time 10 mn
+
+tic
+w = [];
+thresh = 3;
+niter = 4;
+[w,y_clean] = nt_outliers(y,w,thresh,niter);
+toc 
+
+noutl = sum(w(:)==0);
+
+%% ICA ? 
 
 
-%% Clean data
-EEG = clean_rawdata(EEG, arg_flatline, arg_highpass, arg_channel, arg_noisy, arg_burst, arg_window);
-X = clean_asr(X,cutoff,windowlen,stepsize,maxdims,ref_maxbadchannels,ref_tolerances,ref_wndlen,usegpu,useriemannian,maxmem);
-%% Detrending
 
 %% Gaussianity
-for i = 2:58
-    pop_signalstat(EEG, 1,i)
-end
+
+y_clean = permute(y_clean,[2 1]);
+
+[smean,kmean,po1mean,po2mean] = slidingGaussianity(X,ts);
+
 %% Autospectral density
+
+
 
 %% SS modeling on sliding window (for stationarity)
 
+
+
 %% Save preprocessed data 
+
+

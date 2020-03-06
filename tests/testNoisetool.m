@@ -6,6 +6,7 @@ subject = 'AnRa';
 % 'ppdir','nopreproc'
 [X, ts, EEG, filepath,filename,chanstr] = import_ecogdata(subject,'ppdir','nopreproc');
 X = EEG.data;
+
 %% Drop bad channels 
 drop_chans = [1, 40:51, 59, 60, 61]; % Hyppocampal and unknown regions
 EEG =  pop_select(EEG, 'nochannel', drop_chans); % Would be interesting to keep track of ROI
@@ -49,8 +50,9 @@ tic
 w = [];
 thresh = 3;
 niter = 4;
-[w,y] = nt_outliers(y,w,thresh,niter);
+[w,y_clean] = nt_outliers(y,w,thresh,niter);
 toc 
+y_clean = permute(y_clean,[2 1]);
 
 noutl = sum(w(:)==0);
 %% Trials outlier removal

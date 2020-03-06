@@ -17,7 +17,7 @@ if ~exist('figsave',   'var'), figsave   = false;    end % save .fig file(s)?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if exist('test','var'), BP = false; subject = 'AnRa'; task = 'rest_baseline_1'; ppdir = test; end
+% if exist('test','var'), BP = false; subject = 'AnRa'; task = 'rest_baseline_1'; ppdir = test; end
 
 [chans,chanstr,channames] = select_channels(BP,subject,task,schans,badchans,1);
 
