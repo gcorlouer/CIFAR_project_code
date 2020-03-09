@@ -1,4 +1,5 @@
 %Startup stuff
+% Run script in code_matlab rep inside CIFAR project directroy
 
 global CIFAR_version;
 CIFAR_version.major = 1;
@@ -8,38 +9,53 @@ CIFAR_version.minor = 0;
 
 % Add CIFAR root dir + appropriate subdirs to path
 
+cd .. % parent folder
 global CIFAR_root;
-CIFAR_root = fileparts(mfilename('fullpath')); % path containing this file
+CIFAR_root = pwd; % path containing this file
 addpath(CIFAR_root);
 
+% Home dir
+
 global home_dir
-cd ..
+cd .. % parent folder of CIFAR directory
 home_dir = pwd ; 
 cd(CIFAR_root)
-% Add appropriate path for matlab analysis
 
-global code_matlab_root ;
-code_matlab_root = fullfile(CIFAR_root, 'code_matlab');
-addpath(fullfile(code_matlab_root));
-addpath(fullfile(code_matlab_root,'utils'));
-addpath(genpath(fullfile(code_matlab_root,'analysis'))); % was genpath before
-addpath(fullfile(code_matlab_root,'tests'));
-addpath(fullfile(code_matlab_root,'data_manip'));
-addpath(fullfile(code_matlab_root,'wavelet_analysis'));
-addpath(fullfile(code_matlab_root,'preproc'));
-addpath(fullfile(code_matlab_root,'nonparametricGGC_toolbox'));
-addpath(fullfile(code_matlab_root,'HFB_envelope'));
-addpath(genpath(fullfile(code_matlab_root,'fsbrains')));
+% Add appropriate path for matlab ECoG analysis
+
+global code_matlab_root ; 
+code_matlab_root = fileparts(mfilename('fullpath')); % path containing this file
+addpath(genpath(fullfile(code_matlab_root)));
+
+% addpath(genpath(fullfile(code_matlab_root,'utils')));
+% addpath(genpath(fullfile(code_matlab_root,'analysis'))); % was genpath before
+% addpath(fullfile(code_matlab_root,'tests'));
+% addpath(fullfile(code_matlab_root,'preproc'));
 fprintf('[CIFAR startup] Added path %s and appropriate subpaths\n',CIFAR_root);
 
 % Initialize mvgc library
 
 global mvgc_root;
-mvgc_root = fullfile(code_matlab_root,'mvgc'); 
+mvgc_root = fullfile(home_dir,'toolbox','mvgc'); 
 assert(exist(mvgc_root,'dir') == 7,'bad MVGC path: ''%s'' does not exist or is not a directory',mvgc_root);
 cd(mvgc_root);
 startup;
 cd(CIFAR_root);
+
+% Add other useful toolboxes
+
+global toolbox_dir ESN_dir noisetool eeglab_root
+
+cd(home_dir)
+toolbox_dir = fullfile(home_dir,'toolbox');
+ESN_dir = fullfile(toolbox_dir,'EchoState-GrangerCausality');
+noisetool = fullfile(toolbox_dir,'NoiseTools');
+eeglab_root = fullfile(toolbox_dir,'eeglab');
+addpath(genpath(fullfile(ESN_dir)));
+addpath(genpath(fullfile(noisetool)));
+addpath(genpath(fullfile(eeglab_root)));
+
+cd(CIFAR_root)
 
 % Path to plot figures
 
@@ -47,12 +63,12 @@ global fig_path_root
 fig_path_root = fullfile(CIFAR_root, 'figures');
 addpath(genpath(fig_path_root));
 
-% Initialize EegLab
+% Initialize EEGLab
 
-global eeglab_root;
-eeglab_root = fullfile(getenv('MATLAB_EEGLAB'));
-addpath(eeglab_root);
-addpath(genpath(fullfile(eeglab_root,'functions')));
+% global eeglab_root;
+% eeglab_root = fullfile(getenv('MATLAB_EEGLAB'));
+% addpath(eeglab_root);
+% addpath(genpath(fullfile(eeglab_root,'functions')));
 
 % Add Fieldtrip 
 
@@ -75,7 +91,7 @@ addpath(fullfile(genpath(cfdatadir)))
 % Electrode mapping
 
 global ecog_map_root fsaverage_dir plot_elecdir; 
-ecog_map_root = fullfile(code_matlab_root,'ECoG_mapping'); 
+ecog_map_root = fullfile(code_matlab_root,'utils','electrode_mapping'); 
 plot_elecdir  = fullfile(ecog_map_root,'plot_electrodes_on_brain','plot_brain'); 
 fsaverage_dir = fullfile(ecog_map_root, 'fsaverage'); %average brain path
 addpath(genpath(ecog_map_root));

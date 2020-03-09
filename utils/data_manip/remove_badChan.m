@@ -1,4 +1,4 @@
-function [X, EEG] = remove_badChan(EEG, dropChan)
+function [X, timeStamp, EEG] = remove_badChan(EEG, dropChan)
 % Remove bad chans and save bad and good chans info in the EEG structure
 % Might have memory problem if we load too much data
 
@@ -40,3 +40,4 @@ EEG.preproc.badROIname = EEG.SUMA.ROInames(EEG.preproc.ibadROI);
 % Drop bad chans and append data
 EEG =  pop_select(EEG, 'nochannel', dropChan); % Would be interesting to keep track of ROI
 X = EEG.data;
+timeStamp = EEG.times;
