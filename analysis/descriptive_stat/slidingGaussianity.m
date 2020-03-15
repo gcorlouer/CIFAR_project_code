@@ -57,13 +57,13 @@ if ~isempty(p.Results.fignum)
 	ylabel('mean skew');
 	yyaxis right
 	plot(tsw,kmean);
-	xlim([ts(1) ts(end)]);
+	xlim([tsw(1) tsw(end)]);
 	ylabel('mean excess kurtosis');
 	xlabel('time (secs)');
 
 	subplot(2,1,2);
 	plot(tsw,[po1mean po2mean]);
-	xlim([ts(1) ts(end)]);
+	xlim([tsw(1) tsw(end)]);
 	ylabel('outliers (%)');
 	xlabel('time (secs)');
 	legend({sprintf('at %3.1f std. dev.',p.Results.sd1),sprintf('at %3.1f std. dev.',p.Results.sd2)});

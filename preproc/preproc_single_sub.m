@@ -5,19 +5,21 @@
 %        Try ICA and see if it helps      
 %        Experiment different polynomial order fit and compare them
 %        Inspect preproc and detrending
-%        Denoise raw data
+%        Denoise data
 
 %% Import data (EEG structure with SUMA and data)
-% subject = 'AnRa'; task = 'rest_baseline_1';
 
-[fname, fpath, dataset] = CIFAR_filename(); 
+subject = 'AnRa'; task = 'rest_baseline_1';
+
+[fname, fpath, dataset] = CIFAR_filename('BP', false); 
 
 EEG = pop_loadset(fname, fpath);
 
 %% Inspect time series 
+% Beware that channel names on figure are meaningless here
 
 pop_eegplot(EEG);
-
+% saveas(gcf,fullfile(fig_path_root, 'AnRa_raw_bp_rest1_allchans_100s.png'))
 %% Line noise removal (only on raw data)
 
 
@@ -47,7 +49,7 @@ y = nt_detrend(x,order,w,basis,thresh,niter,wsize);
 toc
 
 Y = permute(y, [2 1]);
-
+EEG.data = Y;
 %% Robust outliers detection and removal
 % Run time 10 mn
 
@@ -58,6 +60,9 @@ niter = 4;
 [w,y] = nt_outliers(y,w,thresh,niter);
 toc 
 
+
+Y = permute(y,[2 1]);
+EEG.data = Y;
 nchan = EEG.nbchan;  nobs = nchan*EEG.pnts;
 noutl = sum(w(:)==0) * 100/nobs; % Percentage of outliers
 
@@ -66,15 +71,30 @@ noutl = sum(w(:)==0) * 100/nobs; % Percentage of outliers
 
 
 %% Inspec preproc
+tsNopreproc = X;
+tsPreproc = Y;
+[preprocStat, nopreprocStat] = inspectPreproc(tsPreproc, tsNopreproc, timeStamp);
 
-[newStat, oldStat] = inspectPreproc(tsdata, ts_detrend, timeStamp);
+nogauss_preproc = size(find(preprocStat.kurt > 1),1);
+nogauss_nopreproc = size(find(nopreprocStat.kurt > 1),1);
 
-Y = permute(y,[2 1]);
+[smean_np,kmean_np,po1mean_np,po2mean_np] = slidingGaussianity(tsNopreproc,timeStamp);
+[smean_pp,kmean_pp,po1mean_pp,po2mean_pp] = slidingGaussianity(tsPreproc,timeStamp);
 
-[smean,kmean,po1mean,po2mean] = slidingGaussianity(Y,timeStamp);
-
+gaussdevPreproc = size(find(kmean_pp > 1),1); % measure deviation from gaussianity
+gaussdevNopreproc = size(find(kmean_np > 1),1);
 %% Autospectral density
 
 
 %% Save preprocessed data 
 
+parentFolder = fullfile(cfsubdir, subject, 'EEGLAB_datasets','bipolar_montage');
+preprocfolder = ['preproc_','_noBadchans_detrend_pforder_' ... 
+    num2str(order) basis '_rmv_outlier_' num2str(thresh) 'std'];
+mkdir(parentFolder, preprocfolder)
+
+fname2save = fname;
+fpath2save = fullfile(cfsubdir, subject, 'EEGLAB_datasets', ... 
+    'bipolar_montage', preprocfolder);
+EEG = pop_saveset(EEG , 'filename', fname2save, 'filepath', fpath2save, ... 
+    'savemode', 'onefile' );

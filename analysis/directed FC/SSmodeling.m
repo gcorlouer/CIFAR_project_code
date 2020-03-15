@@ -1,4 +1,4 @@
-function [SSmodel, moest] = SSmodeling(X, ts, varargin)
+function [SSmodel, moest] = SSmodeling(X, varargin)
 
 defaultFs = 500;
 defaultMosel = 1;
@@ -8,13 +8,12 @@ defaultMoregmode = 'LWR';
 p = inputParser;
 
 addRequired(p,'X');
-addRequired(p,'ts');
 addParameter(p, 'fs', defaultFs, @isscalar);
 addParameter(p, 'mosel', defaultMosel, @isscalar); % selected model order: 1 - AIC, 2 - BIC, 3 - HQC, 4 - LRT
 addParameter(p, 'momax', defaultMomax, @isscalar);
 addParameter(p, 'moregmode', defaultMoregmode, @vector);  
 
-parse(p, X, ts, varargin{:});
+parse(p, X, varargin{:});
 
 [nchan, nobs, ntrials] = size(p.Results.X);
 

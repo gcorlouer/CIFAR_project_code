@@ -35,6 +35,8 @@ end
 
 EEG.picks.ichan = arpicks;
 EEG.picks.idrops = drops;
+EEG.picks.chanNames_pick = EEG.SUMA.channames(EEG.picks.ichan);
+EEG.picks.chanNames_drop = EEG.SUMA.channames(EEG.picks.idrops);
 EEG.picks.chan2ROI_pick = EEG.SUMA.chan2ROI(arpicks); 
 EEG.picks.chan2ROI_drop = EEG.SUMA.chan2ROI(drops);
 EEG.picks.name_chan2ROIpick  = EEG.SUMA.chan2ROIname(arpicks); 

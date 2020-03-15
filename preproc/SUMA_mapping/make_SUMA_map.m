@@ -17,12 +17,12 @@
 % ROI2chans{k}(i)  - i-th channel in k-th SUMA ROI
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-BP = 1;
+BP = 0;
 sm = get_SUMA_map(subject);
 
-[fname, fpath, dataset] = CIFAR_filename();
+[fname, fpath, dataset] = CIFAR_filename('BP', false);
 
-s = dir([filepath filesep '*.set']);
+s = dir([fpath filesep '*.set']);
 
 for i = 1:length(s) 
 	sdataset = s(i).name;
