@@ -11,7 +11,7 @@
 
 subject = 'AnRa'; task = 'rest_baseline_1';
 
-[fname, fpath, dataset] = CIFAR_filename('BP', false); 
+[fname, fpath, dataset] = CIFAR_filename('BP', true); 
 
 EEG = pop_loadset(fname, fpath);
 
@@ -19,6 +19,12 @@ EEG = pop_loadset(fname, fpath);
 % Beware that channel names on figure are meaningless here
 
 pop_eegplot(EEG);
+
+% CPSD
+
+X = EEG.data;
+tsdata2cpsd(X);
+
 % saveas(gcf,fullfile(fig_path_root, 'AnRa_raw_bp_rest1_allchans_100s.png'))
 %% Line noise removal (only on raw data)
 
@@ -33,6 +39,15 @@ dropChan = [1, 40:50, 59, 60, 61]; % Hyppocampal and unknown regions
 % Data shape for NoiseTool is time*sample*trials
 
 x = permute(X,[2 1]);
+
+%% Remove line noise
+
+% fs = EEG.srate;
+% lnfreqs = [60.06 180];
+% 
+% [X,mnsr] = lndetrend(X,fs,lnfreqs);
+% 
+% lnoise = lntrend(X,fs,lnfreqs);
 
 %% Robust detrending 
 
@@ -55,7 +70,7 @@ EEG.data = Y;
 
 tic
 w = [];
-thresh = 3;
+thresh = 6;
 niter = 4;
 [w,y] = nt_outliers(y,w,thresh,niter);
 toc 

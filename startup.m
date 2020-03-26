@@ -53,6 +53,7 @@ noisetool = fullfile(toolbox_dir,'NoiseTools');
 eeglab_root = fullfile(toolbox_dir,'eeglab');
 addpath(genpath(fullfile(ESN_dir)));
 addpath(genpath(fullfile(noisetool)));
+rmpath(fullfile(noisetool, 'COMPAT'));
 addpath(genpath(fullfile(eeglab_root)));
 
 cd(CIFAR_root)

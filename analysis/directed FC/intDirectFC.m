@@ -1,4 +1,5 @@
-function [DFC, mDFC] = directFC(SSmodel, ichan1, ichan2, multitrial)
+function [sDFC, intDFC, mean_intDFC] = intDirectFC(SSmodel, ichan1, ... 
+    ichan2, multitrial, fs, fbin, Band)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute directed functional connectivity on a sliding window according to
 % diferent mode of connectivity (inter, intra and pairwise channel)
@@ -18,17 +19,22 @@ function [DFC, mDFC] = directFC(SSmodel, ichan1, ichan2, multitrial)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if multitrial == true
-    DFC = ss_to_mvgc(SSmodel.A, SSmodel.C, ...
-        SSmodel.K, SSmodel.V, ichan1, ichan2);
+    % Spectral GC
+    sDFC = ss_to_smvgc(SSmodel.A, SSmodel.C, SSmodel.K, SSmodel.V, ... 
+        ichan1, ichan2, fbin);
+    % Integration of spectral GC on specific frequency band
+    intDFC = bandlimit(sDFC, 2, fs, Band);
 else
     nepoch = size(SSmodel, 2);
     for w = 1:nepoch
-        % GC of the envelope between 2 ROIs 
-        DFC(w) = ss_to_mvgc(SSmodel(w).A, SSmodel(w).C, ...
-            SSmodel(w).K, SSmodel(w).V, ichan1, ichan2);
+        % Spectral GC on epoch
+        sDFC(w,:) = ss_to_smvgc(SSmodel(w).A, SSmodel(w).C, ...
+            SSmodel(w).K, SSmodel(w).V, ichan1, ichan2, fbin);
+        % Integration of spectral GC on specific frequency band
+        intDFC(w) = bandlimit(sDFC(w,:), 2, fs, Band);
     end
-    
-    mDFC = mean(DFC(w),2);
+    % Average over epochs
+    mean_intDFC = mean(intDFC(w),2);
 end
 
 end

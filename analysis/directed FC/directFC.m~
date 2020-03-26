@@ -28,7 +28,7 @@ else
             SSmodel(w).K, SSmodel(w).V, ichan1, ichan2);
     end
     
-    mDFC = mean(DFC(w),2);
+    mDFC = mean(DFC_envelope(w),2);
 end
 
 end
