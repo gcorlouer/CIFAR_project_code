@@ -1,9 +1,19 @@
 function  [X, EEG] = pick_chan(EEG, ROIs)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pick channels belonging to specific ROIs
+% Input: 
+%%%%%%%%%
+% - ROIs : ROIs to select from which pick channels
+% - EEG : EEG structure
+% Output: 
+%%%%%%%%%
+% X: time series with picked channels
+% EEG: New EEG structure with picked channels
+% Important note:
+%%%%%%%%%%%%%%%%%%%%
 % This funciton is to be used on preprocessed data i.e. with bad chans already
 % removed
-% Picks are the index of channels relative to the unpreprocessed data to
-% pick (because we already have the SUMA mapping)
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if nargin < 2 || isempty(ROIs), ROIs = EEG.preproc.igoodROI; end
 

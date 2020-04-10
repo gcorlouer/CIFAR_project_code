@@ -1,6 +1,5 @@
 %Startup stuff
 % Run script in code_matlab rep inside CIFAR project directroy
-
 global CIFAR_version;
 CIFAR_version.major = 1;
 CIFAR_version.minor = 0;
@@ -41,6 +40,12 @@ assert(exist(mvgc_root,'dir') == 7,'bad MVGC path: ''%s'' does not exist or is n
 cd(mvgc_root);
 startup;
 cd(CIFAR_root);
+
+% Add simulated data
+
+global sim_dir
+sim_dir = fullfile(CIFAR_root, 'simulated_data');
+addpath(genpath(fullfile(sim_dir)));
 
 % Add other useful toolboxes
 

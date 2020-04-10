@@ -1,4 +1,4 @@
-function [DFC, mDFC] = directFC(SSmodel, ichan1, ichan2, multitrial)
+function [DFC, mDFC] = interDFC(SSmodel, ichan1, ichan2, multitrial)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute directed functional connectivity on a sliding window according to
 % diferent mode of connectivity (inter, intra and pairwise channel)
@@ -20,6 +20,7 @@ function [DFC, mDFC] = directFC(SSmodel, ichan1, ichan2, multitrial)
 if multitrial == true
     DFC = ss_to_mvgc(SSmodel.A, SSmodel.C, ...
         SSmodel.K, SSmodel.V, ichan1, ichan2);
+    mDFC = DFC;
 else
     nepoch = size(SSmodel, 2);
     for w = 1:nepoch
@@ -28,7 +29,7 @@ else
             SSmodel(w).K, SSmodel(w).V, ichan1, ichan2);
     end
     
-    mDFC = mean(DFC_envelope(w),2);
+    mDFC = mean(DFC(w),2);
 end
 
 end
