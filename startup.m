@@ -17,12 +17,12 @@ addpath(CIFAR_root);
 
 global home_dir
 cd .. % parent folder of CIFAR directory
-home_dir = pwd ; 
+home_dir = pwd ;
 cd(CIFAR_root)
 
 % Add appropriate path for matlab ECoG analysis
 
-global code_matlab_root ; 
+global code_matlab_root ;
 code_matlab_root = fileparts(mfilename('fullpath')); % path containing this file
 addpath(genpath(fullfile(code_matlab_root)));
 
@@ -35,7 +35,7 @@ fprintf('[CIFAR startup] Added path %s and appropriate subpaths\n',CIFAR_root);
 % Initialize mvgc library
 
 global mvgc_root;
-mvgc_root = fullfile(home_dir,'toolbox','mvgc'); 
+mvgc_root = fullfile(home_dir,'toolbox','mvgc');
 assert(exist(mvgc_root,'dir') == 7,'bad MVGC path: ''%s'' does not exist or is not a directory',mvgc_root);
 cd(mvgc_root);
 startup;
@@ -76,13 +76,13 @@ addpath(genpath(fig_path_root));
 % addpath(eeglab_root);
 % addpath(genpath(fullfile(eeglab_root,'functions')));
 
-% Add Fieldtrip 
+% Add Fieldtrip
 
 % global fieldtrip_root
 % cd(home_dir)
 % fieldtrip_root = fullfile(home_dir,'fieldtrip');
 % addpath(fieldtrip_root)
-% ft_defaults % add main fieldtrip functions 
+% ft_defaults % add main fieldtrip functions
 % cd(CIFAR_root)
 
 % Amend for your CIFAR data set-up
@@ -96,9 +96,9 @@ addpath(fullfile(genpath(cfdatadir)))
 
 % Electrode mapping
 
-global ecog_map_root fsaverage_dir plot_elecdir; 
-ecog_map_root = fullfile(code_matlab_root,'utils','electrode_mapping'); 
-plot_elecdir  = fullfile(ecog_map_root,'plot_electrodes_on_brain','plot_brain'); 
+global ecog_map_root fsaverage_dir plot_elecdir;
+ecog_map_root = fullfile(code_matlab_root,'utils','electrode_mapping');
+plot_elecdir  = fullfile(ecog_map_root,'plot_electrodes_on_brain','plot_brain');
 fsaverage_dir = fullfile(ecog_map_root, 'fsaverage'); %average brain path
 addpath(genpath(ecog_map_root));
 
