@@ -4,6 +4,7 @@ global CIFAR_version;
 CIFAR_version.major = 1;
 CIFAR_version.minor = 0;
 
+rootdir = getenv('USERPROFILE');
 %fprintf('[CIFAR startup] Initialising CIFAR version %d.%d\n', PsyMEG_version.major, PsyMEG_version.minor);
 
 % Add CIFAR root dir + appropriate subdirs to path
