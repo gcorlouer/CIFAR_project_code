@@ -1,17 +1,21 @@
 import matlab.engine
-from pathlib import Path, PurePath, PosixPath
+from pathlib import Path, PosixPath
 import os
+# %% Create relevant Path
+
 eng = matlab.engine.start_matlab()
-wdir = PosixPath('~', 'projects', 'CIFAR')
-wdir.expanduser()
+wdir = PosixPath('~', 'projects', 'CIFAR').expanduser()
+homedir = PosixPath('~').expanduser()
+mvgcdir = eng.fullfile('~', 'toolboxes', 'mvgc')
+noisetooldir = eng.fullfile('~', 'toolboxes', 'NoiseTools')
 os.chdir(wdir)
+eng.cd(eng.fullfile('~', 'projects', 'CIFAR'))
 Path.cwd()
-# Add matlab code path
+eng.pwd()
+
+# %% Add relevant matlab path
+
 eng.addpath(eng.genpath('code/'))
-rootdir = eng.getenv('USERPROFILE')
-mvgc_root = eng.fullfile(rootdir, 'toolboxes', 'mvgc')
-noisetool_root = eng.fullfile(rootdir, 'toolboxes', 'NoiseTools')
-eng.addpath(eng.genpath('code/'))
-eng.addpath(mvgc_root)
-eng.addpath(noisetool_root)
-eng.startup_mat(nargout=0)
+eng.addpath(eng.genpath(mvgcdir))
+eng.addpath(eng.genpath(noisetooldir))
+eng.rmpath(eng.fullfile(noisetooldir, 'COMPAT'))
